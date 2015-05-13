@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ $1 == '' ]; then
+  release='saucy'
+  version='13.10'
+  arch='amd64'
+else
+  release=$1
+  version=$2
+  arch=$3
+fi
+
+URL="rsync://archive.ubuntu.com/ubuntu/dists/${release}/main/installer-${arch}/current/images/netboot/"
+
+mkdir ubuntu-${version}-${arch}
+rsync -av --delete ${URL} ubuntu-${version}-${arch}/.
+if [ $? -ne 0 ]; then
+  exit 1
+fi
+

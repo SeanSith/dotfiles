@@ -1,0 +1,10 @@
+let vimpager_use_gvim = 0
+let vimpager_passthrough = 0
+let vimpager_disable_x11 = 1
+let vimpager_scrolloff = 5
+if exists("vimpager")
+  if exists("vimpager_ptree") && vimpager_ptree[-2] == 'wman'
+    set ft=man
+  endif
+endif
+

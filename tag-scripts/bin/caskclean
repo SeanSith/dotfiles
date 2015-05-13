@@ -1,0 +1,66 @@
+#!/bin/bash
+###
+### caskclean
+###
+### Cleans up superceded Homebrew Casks (caskroom.io) which have been 
+### upgraded.
+###
+CASKROOM=/opt/homebrew-cask/Caskroom
+
+###
+### Constants
+###
+red='\033[0;31m'
+green='\033[0;32m'
+nocolor='\033[0m'
+### 
+### Default Internals
+###
+VERBOSE=0
+FORCE=0
+
+usage () {
+  cat >&2 <<USAGE
+  Usage $0 [-vfh]
+    -v  Verbose
+    -f  Actually remove the casks (otherwise we just output possible removals)
+    -h  Help
+USAGE
+  exit 1
+}
+
+while getopts "vfh" opt; do
+  case $opt in
+    v)
+      VERBOSE=1
+      ;;
+    f)
+      FORCE=1
+      ;;
+    h)
+      usage
+      ;;
+  esac
+done
+
+ls $CASKROOM | while read cask; do 
+  pkgs_to_remove=""
+  pkgs_to_remove=`ls -t ${CASKROOM}/${cask} | tail -n +2`
+  if [ "$pkgs_to_remove" != "" ]; then
+  echo "${cask}:"
+    if [ $FORCE -eq 1 ]; then
+      for pkg in $pkgs_to_remove; do
+          echo -e "${green}Removing ${pkg}${nocolor}" | pr -to 4
+          rm -rf ${CASKROOM}/${cask}/${pkg} 2>&1 | pr -to 4
+          if [ $? -ne 0 ]; then
+            echo -e "${red}Removal failed!${nocolor}" | pr -to 4
+          fi
+      done
+    else
+      echo -e "${green}Would remove `echo -n ${pkgs_to_remove}`${nocolor}" | pr -to 4
+    fi
+  elif [ $VERBOSE -eq 1 ]; then
+  echo "${cask}:"
+    echo -e "${nocolor}Nothing to remove.${nocolor}" | pr -to 4
+  fi
+done

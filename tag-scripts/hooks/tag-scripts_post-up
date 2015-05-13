@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#[ `which hg` ] || eval "$(brew install mercurial)"
+
+#if [ ! -e $HOME/.bin/jets3t ]; then
+#  hg clone https://bitbucket.org/jmurty/jets3t/ $HOME/.bin/jets3t
+#  cd $HOME/.bin/j3tset
+#  hg up Release-0.9.3
+#  cd -
+#fi

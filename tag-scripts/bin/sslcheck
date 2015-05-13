@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "Cert: `openssl x509 -noout -modulus -in $1 | openssl md5`"
+echo "Key:  `openssl rsa -noout -modulus -in $2 | openssl md5`"
+echo ""
+echo "If they match, you're golden."
+echo "If not, find the matching pair."
+echo "If you got an error, make sure you enter them in the correct order."

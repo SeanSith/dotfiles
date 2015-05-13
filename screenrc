@@ -1,0 +1,19 @@
+startup_message off
+defscrollback 1024
+#deflogin on
+nethack on	# Nethack-style messages
+term screen-256color
+bind X remove
+
+# Window numbering starts at 1, not 0.
+bind c screen 1
+bind ^c screen 1
+bind 0 select 10
+screen 1
+
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m/%d %{W}%c %{g}]'
+#                    color      host     exp col   
+caption string "%?%F%{= Bk}%? %C%A %D %m-%d-%Y %{= kB} %t%= %?%F%{= Bk}%:%{= wk}%? %n "
+# Enable ssh-agent to work within screen
+setenv SSH_AUTH_SOCK $SSH_AUTH_SOCK
