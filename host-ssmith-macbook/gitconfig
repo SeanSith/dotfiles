@@ -1,0 +1,21 @@
+[push]
+	default = simple
+[user]
+	email = ssmith@missiondata.com
+	name = Sean Smith
+[merge]
+	tool = vimdiff
+[core]
+	filemode = true
+	editor = /usr/bin/vim
+	excludesfile = /Users/ssmith/.gitignore_global
+[filter "media"]
+	clean = git media clean %f
+	smudge = git media smudge %f
+	required = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

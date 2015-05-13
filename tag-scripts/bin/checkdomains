@@ -1,0 +1,15 @@
+#!/bin/bash
+
+file=$1
+
+for domain in `cat $file | awk {'print $1'}`
+do
+  dig $domain NS +short | grep -ie peak -e xodiax > /dev/null 2>&1
+  if [ $? -ne 0 ]; then
+    echo "    $domain does NOT exist at Peak10" >&2
+  #elif [ $? -eq 0 ]; then
+  #  echo "    $domain is at Peak10"
+  #else 
+  #  echo "    $domain had unspecified error"
+  fi
+done
