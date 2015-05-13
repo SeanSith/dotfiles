@@ -3,24 +3,30 @@
 Modeled after Thoughtbot's [dotfiles](https://github.com/thoughtbot/dotfiles),
 this repository is my personal home directory configuration.
 
-##Install
--------
+## Notice
+This is a work in its infancy (pre-Alpha). It makes incorrect assumptions about
+how rcm works (see KNOWN BUGS below). It probably also has other screw-ups.
+
+## Install
 
 Clone onto your laptop:
 
+```
     git clone git://github.com/SeanSith/dotfiles.git
-
-(Or, [fork and keep your fork
-updated](http://robots.thoughtbot.com/keeping-a-github-fork-updated)).
+```
 
 Install [rcm](https://github.com/thoughtbot/rcm):
 
+```
     brew tap thoughtbot/formulae
     brew install rcm
+```
 
 Install the dotfiles:
 
-    env RCRC=$HOME/dotfiles/rcrc rcup
+```
+    env RCRC=$HOME/.dotfiles/rcrc rcup
+```
 
 This command will create symlinks for config files in your home directory.
 Setting the `RCRC` environment variable tells `rcup` to use standard
@@ -35,175 +41,23 @@ You can safely run `rcup` multiple times to update:
 
     rcup
 
-Make your own customizations
-----------------------------
+## Known Bugs
+- Initial installation broken
+  - The default .rcrc file would not move out of the way for the system-specific
+    one. Therefore we removed it from the repository. It needs to go back.
+  - For now, source the system-specific .rcrc file to make it sort of work.
+- rcm does not currently support tag- or system-specific hooks.
+  - Currently these post-up hooks "work" because we let rcm put them in a ~/.hooks
+    directory and we force-run them from the default post-up hook.
+  - https://github.com/thoughtbot/rcm/issues/48 slated for rcm 1.3.0
+- Need to find a way to get jets3t installed automatically.
 
-Put your customizations in dotfiles appended with `.local`:
-
-* `~/.aliases.local`
-* `~/.git_template.local/*`
-* `~/.gitconfig.local`
-* `~/.gvimrc.local`
-* `~/.psqlrc.local` (we supply a blank `.psqlrc.local` to prevent `psql` from
-  throwing an error, but you should overwrite the file with your own copy)
-* `~/.tmux.conf.local`
-* `~/.vimrc.local`
-* `~/.vimrc.bundles.local`
-* `~/.zshenv.local`
-* `~/.zshrc.local`
-* `~/.zsh/configs/*`
-
-For example, your `~/.aliases.local` might look like this:
-
-    # Productivity
-    alias todo='$EDITOR ~/.todo'
-
-Your `~/.gitconfig.local` might look like this:
-
-    [alias]
-      l = log --pretty=colored
-    [pretty]
-      colored = format:%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset
-    [user]
-      name = Dan Croak
-      email = dan@thoughtbot.com
-
-Your `~/.vimrc.local` might look like this:
-
-    " Color scheme
-    colorscheme github
-    highlight NonText guibg=#060606
-    highlight Folded  guibg=#0A0A0A guifg=#9090D0
-
-Your `~/.zshenv.local` might look like this:
-
-    # load pyenv if available
-    if which pyenv &>/dev/null ; then
-      eval "$(pyenv init -)"
-    fi
-
-To extend your `git` hooks, create executable scripts in
-`~/.git_template.local/hooks/*` files.
-
-Your `~/.zshrc.local` might look like this:
-
-    # recommended by brew doctor
-    export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-
-Your `~/.vimrc.bundles.local` might look like this:
-
-    Plug 'Lokaltog/vim-powerline'
-    Plug 'stephenmckinney/vim-solarized-powerline'
-
-zsh Configurations
-------------------
-
-Additional zsh configuration can go under the `~/.zsh/configs` directory. This
-has two special subdirectories: `pre` for files that must be loaded first, and
-`post` for files that must be loaded last.
-
-For example, `~/.zsh/configs/pre/virtualenv` makes use of various shell
-features which may be affected by your settings, so load it first:
-
-    # Load the virtualenv wrapper
-    . /usr/local/bin/virtualenvwrapper.sh
-
-Setting a key binding can happen in `~/.zsh/configs/keys`:
-
-    # Grep anywhere with ^G
-    bindkey -s '^G' ' | grep '
-
-Some changes, like `chpwd`, must happen in `~/.zsh/configs/post/chpwd`:
-
-    # Show the entries in a directory whenever you cd in
-    function chpwd {
-      ls
-    }
-
-This directory is handy for combining dotfiles from multiple teams; one team
-can add the `virtualenv` file, another `keys`, and a third `chpwd`.
-
-The `~/.zshrc.local` is loaded after `~/.zsh/configs`.
-
-vim Configurations
-------------------
-
-Similarly to the zsh configuration directory as described above, vim
-automatically loads all files in the `~/.vim/plugin` directory. This does not
-have the same `pre` or `post` subdirectory support that our `zshrc` has.
-
-This is an example `~/.vim/plugin/c.vim`. It is loaded every time vim starts,
-regardless of the file name:
-
-    # Indent C programs according to BSD style(9)
-    set cinoptions=:0,t0,+4,(4
-    autocmd BufNewFile,BufRead *.[ch] setlocal sw=0 ts=8 noet
-
-What's in it?
--------------
-
-[vim](http://www.vim.org/) configuration:
-
-* [Ctrl-P](https://github.com/kien/ctrlp.vim) for fuzzy file/buffer/tag finding.
-* [Rails.vim](https://github.com/tpope/vim-rails) for enhanced navigation of
-  Rails file structure via `gf` and `:A` (alternate), `:Rextract` partials,
-  `:Rinvert` migrations, etc.
-* Run [RSpec](https://www.relishapp.com/rspec) specs from vim.
-* Set `<leader>` to a single space.
-* Switch between the last two files with space-space.
-* Syntax highlighting for CoffeeScript, Textile, Cucumber, Haml, Markdown, and
-  HTML.
-* Use [Ag](https://github.com/ggreer/the_silver_searcher) instead of Grep when
-  available.
-* Use [Exuberant Ctags](http://ctags.sourceforge.net/) for tab completion.
-* Use [vim-mkdir](https://github.com/pbrisbin/vim-mkdir) for automatically
-  creating non-existing directories before writing the buffer.
-* Use [vim-plug](https://github.com/junegunn/vim-plug) to manage plugins.
-
-[tmux](http://robots.thoughtbot.com/a-tmux-crash-course)
-configuration:
-
-* Improve color resolution.
-* Remove administrative debris (session name, hostname, time) in status bar.
-* Set prefix to `Ctrl+a` (like GNU screen).
-* Soften status bar color from harsh green to light gray.
-
-[git](http://git-scm.com/) configuration:
-
-* Adds a `create-branch` alias to create feature branches.
-* Adds a `delete-branch` alias to delete feature branches.
-* Adds a `merge-branch` alias to merge feature branches into master.
-* Adds an `up` alias to fetch and rebase `origin/master` into the feature
-  branch. Use `git up -i` for interactive rebases.
-* Adds `post-{checkout,commit,merge}` hooks to re-index your ctags.
-* Adds `pre-commit` and `prepare-commit-msg` stubs that delegate to your local
-  config.
-
-[Ruby](https://www.ruby-lang.org/en/) configuration:
-
-* Add trusted binstubs to the `PATH`.
-* Load rbenv into the shell, adding shims onto our `PATH`.
-
-Shell aliases and scripts:
-
-* `b` for `bundle`.
-* `g` with no arguments is `git status` and with arguments acts like `git`.
-* `git-churn` to show churn for the files changed in the branch.
-* `m` for `rake db:migrate && rake db:rollback && rake db:migrate && rake db:test:prepare`.
-* `mcd` to make a directory and change into it.
-* `replace foo bar **/*.rb` to find and replace within a given list of files.
-* `rk` for `rake`.
-* `tat` to attach to tmux session named the same as the current directory.
-* `v` for `$VISUAL`.
-
-Thanks
-------
+## Thanks
 
 Thanks go to [Thoughtbot](http://thoughtbot.com) for the inspiration and examples
 in their own [dotfiles](https://github.com/thoughtbot/dotfiles) repository.
 
-License
--------
+## License
 
 dotfiles is copyright © 2015 Sean Smith. It is free software, and may be
 redistributed under the terms specified in the [`LICENSE`] file.
