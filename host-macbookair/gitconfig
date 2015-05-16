@@ -1,0 +1,15 @@
+[push]
+	default = simple
+[user]
+	email = sean@seansith.com
+	name = Sean Smith
+[merge]
+	tool = vimdiff
+[core]
+	filemode = true
+	editor = /usr/bin/vim
+	excludesfile = /Users/ssmith/.gitignore_global
+[filter "media"]
+	clean = git media clean %f
+	smudge = git media smudge %f
+	required = true
