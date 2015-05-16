@@ -12,11 +12,6 @@ set -o vi
 # AWS CLI
 complete -C aws_completer aws
 
-# Chef Development Kit
-# Removed because it hoses up rbenv. Make chefdk just another Ruby:
-# ln -s /opt/chefdk/embedded ~/.rbenv/versions/chefdk
-#[ `which chef` ] && eval "$(chef shell-init bash)"
-
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
