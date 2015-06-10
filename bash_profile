@@ -16,6 +16,9 @@ complete -C aws_completer aws
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+# ChefDK Stuff (not the full load)
+export PATH="/opt/chefdk/bin:$PATH"
+
 # Pear
 export PATH="~/.pear/bin:$PATH"
 
