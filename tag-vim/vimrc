@@ -21,6 +21,7 @@ Plugin 'gregsexton/MatchTag'  " matching HTML tag highlighting
 Plugin 'dougireton/vim-chef'  " Chef syntax and syntastic support
 Plugin 'scrooloose/nerdtree'  " Project drawer
 Plugin 'Xuyuanp/nerdtree-git-plugin' "Git status for NERDTree
+Plugin 'chriskempson/base16-vim'
 call vundle#end()                " required
 filetype plugin indent on        " required
 " Brief help
@@ -95,3 +96,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " Color text if over 80 columns
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
+
+let base16colorspace=256
+set background=dark
+colorscheme base16-default
