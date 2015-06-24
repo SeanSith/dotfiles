@@ -32,3 +32,7 @@ alias caskrepo='cd "$(brew --repository)"/Library/Taps/caskroom/homebrew-cask'
 #export PAGER=/usr/local/bin/vimpager
 #alias less=$PAGER
 #alias zless=$PAGER
+
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
