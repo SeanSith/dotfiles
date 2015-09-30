@@ -1,9 +1,11 @@
 #!/bin/bash
+# Enable SSH-Agent
 if [ -z "$SSH_AUTH_SOCK" ] ; then
   eval `ssh-agent -s`
   ssh-add
 fi
 
+# Set Vi keybindings in Bash
 set -o vi
 
 # Aliases file, if exists
@@ -17,16 +19,22 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 # ChefDK Stuff (not the full load)
-export PATH="/opt/chefdk/bin:$PATH"
+[ -d /opt/chefdk/bin ] && export PATH="/opt/chefdk/bin:$PATH"
 
 # Pear
-export PATH="~/.pear/bin:$PATH"
+[ -d ~/.pear/bin ] && export PATH="~/.pear/bin:$PATH"
+
+# Homebrew Setup
+if which brew > /dev/null; then
+  # Homebrew/PHP PHP 5.6
+  export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+  alias caskrepo='cd "$(brew --repository)"/Library/Taps/caskroom/homebrew-cask'
+fi
 
 # My local scripts
 export PATH="~/.bin:$PATH"
 
 alias ll='ls -l'
-alias caskrepo='cd "$(brew --repository)"/Library/Taps/caskroom/homebrew-cask'
 
 # vimpager
 #export PAGER=/usr/local/bin/vimpager
