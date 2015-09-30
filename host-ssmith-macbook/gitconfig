@@ -7,7 +7,7 @@
 	tool = vimdiff
 [core]
 	filemode = true
-	editor = /usr/bin/vim
+	editor = /usr/local/bin/vim
 	excludesfile = /Users/ssmith/.gitignore_global
 [filter "media"]
 	clean = git media clean %f
