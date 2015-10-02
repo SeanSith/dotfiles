@@ -27,6 +27,7 @@ eval "$(rbenv init -)"
 # Homebrew Setup
 if which brew > /dev/null; then
   # Homebrew/PHP PHP 5.6
+  export PATH="/usr/local/sbin:$PATH"
   export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
   alias caskrepo='cd "$(brew --repository)"/Library/Taps/caskroom/homebrew-cask'
 fi
