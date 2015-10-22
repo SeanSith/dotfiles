@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if [ ! -e $HOME/.rbenv/plugins ]; then
+  mkdir $HOME/.rbenv/plugins
   cd $HOME/.rbenv/plugins
   git clone https://github.com/sstephenson/ruby-build
   git clone https://github.com/rkh/rbenv-update
