@@ -1,9 +1,16 @@
 #!/bin/bash
 # Enable SSH-Agent
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-  eval `ssh-agent -s`
-  ssh-add
+#if [ -z "$SSH_AUTH_SOCK" ] ; then
+#  eval `ssh-agent -s`
+#  ssh-add
+#fi
+# Use gpg-agent
+if [ -f "${HOME}/.gpg-agent-info" ]; then
+  . "${HOME}/.gpg-agent-info"
+  export GPG_AGENT_INFO
+  export SSH_AUTH_SOCK
 fi
+export GPG_TTY=$(tty)
 
 # Set Vi keybindings in Bash
 set -o vi
@@ -27,8 +34,15 @@ eval "$(rbenv init -)"
 # Homebrew Setup
 if which brew > /dev/null; then
   # Homebrew/PHP PHP 5.6
+  export PATH="/usr/local/sbin:$PATH"
   export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
   alias caskrepo='cd "$(brew --repository)"/Library/Taps/caskroom/homebrew-cask'
+fi
+
+# Go
+if which go > /dev/null; then
+  export PATH=$PATH:/usr/local/opt/go/libexec/bin
+  export GOPATH=~/.go
 fi
 
 # My local scripts
