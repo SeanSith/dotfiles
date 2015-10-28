@@ -15,11 +15,16 @@ export GPG_TTY=$(tty)
 # Set Vi keybindings in Bash
 set -o vi
 
-# Aliases file, if exists
-[ -f ~/.config/aliases ] && source ~/.config/aliases
+# Aliases directory, if exists
+[ -d ~/.config/aliases ] && eval "$(cat ~/.config/aliases/*)"
 
-# AWS CLI
-complete -C aws_completer aws
+# Homebrew Setup
+if which brew > /dev/null; then
+  alias caskrepo='cd "$(brew --repository)"/Library/Taps/caskroom/homebrew-cask'
+  # Homebrew/PHP PHP 5.6
+  export PATH="/usr/local/sbin:$PATH"
+  export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+fi
 
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -31,12 +36,9 @@ eval "$(rbenv init -)"
 # Pear
 [ -d ~/.pear/bin ] && export PATH="~/.pear/bin:$PATH"
 
-# Homebrew Setup
-if which brew > /dev/null; then
-  # Homebrew/PHP PHP 5.6
-  export PATH="/usr/local/sbin:$PATH"
-  export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
-  alias caskrepo='cd "$(brew --repository)"/Library/Taps/caskroom/homebrew-cask'
+# AWS CLI
+if which aws > /dev/null; then 
+  complete -C aws_completer aws
 fi
 
 # Go
@@ -47,8 +49,6 @@ fi
 
 # My local scripts
 export PATH="~/.bin:$PATH"
-
-alias ll='ls -l'
 
 # vimpager
 #export PAGER=/usr/local/bin/vimpager

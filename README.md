@@ -3,10 +3,6 @@
 Modeled after Thoughtbot's [dotfiles](https://github.com/thoughtbot/dotfiles),
 this repository is my personal home directory configuration.
 
-## Notice
-This is a work in its infancy (pre-Alpha). It makes incorrect assumptions about
-how rcm works (see KNOWN BUGS below). It probably also has other screw-ups.
-
 ## Install
 
 Clone onto your laptop:
@@ -46,16 +42,17 @@ You can safely run `rcup` multiple times to update:
   - The default .rcrc file would not move out of the way for the system-specific
     one. Therefore we removed it from the repository. It needs to go back.
   - For now, source the system-specific .rcrc file to make it sort of work.
-- rcm does not currently support tag- or system-specific hooks.
-  - Currently these post-up hooks "work" because we let rcm put them in a ~/.hooks
-    directory and we force-run them from the default post-up hook.
-  - https://github.com/thoughtbot/rcm/issues/48 slated for rcm 1.3.0
-- Need to find a way to get jets3t installed automatically.
+- rcm does not currently support tag- or host-specific hooks.
+  - Currently these post-up hooks "work" because we let rcm put them in a 
+    ~/.hooks directory and we force-run them from the default post-up hook.
+  - https://github.com/thoughtbot/rcm/issues/48 slated for rcm 1.3.0 (CLOSED, 
+    WONTFIX)
 
 ## Thanks
 
-Thanks go to [Thoughtbot](http://thoughtbot.com) for the inspiration and examples
-in their own [dotfiles](https://github.com/thoughtbot/dotfiles) repository.
+Thanks go to [Thoughtbot](http://thoughtbot.com) for the inspiration and 
+examples in their own [dotfiles](https://github.com/thoughtbot/dotfiles) 
+repository.
 
 ## License
 
