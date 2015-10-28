@@ -16,7 +16,7 @@ export GPG_TTY=$(tty)
 set -o vi
 
 # Aliases file, if exists
-[ -f ~/.config/aliases ] && source ~/.config/aliases
+[ -d ~/.config/aliases ] && source ~/.config/aliases/*
 
 # AWS CLI
 complete -C aws_completer aws
