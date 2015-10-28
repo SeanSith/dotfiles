@@ -1,2 +1,0 @@
-#!/bin/bash
-openssl rand -base64 8 |md5 |head -c20;echo
