@@ -1,2 +1,3 @@
 alias be='bundle exec'
 alias bes='bundle exec rails server'
+alias bi='bundle install --path .bundle'
