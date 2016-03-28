@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+require 'gitlab'
+
+ARGV.each do |user|
+  Gitlab.configure do | config | 
+    Gitlab.sudo = user
+  end
+
+  Gitlab.ssh_keys.each do |key|
+    puts key.key
+  end
+end
