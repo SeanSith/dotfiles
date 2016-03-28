@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+require 'gitlab'
+
+exit_code = 0
+
+def find_project(name)
+  # GitLab provides paginated responses
+  Gitlab.projects.each_page do |page|
+    if found = page.find {|project| project.path_with_namespace == name}
+      return found
+    end
+  end
+end
+
+if ARGV[1]
+  (reference_project, new_project) = ARGV
+else
+  reference_project = 'missiondata/theatlantic-destinations'
+  new_project = ARGV[0]
+end
+
+if source_project = find_project(reference_project)
+  if destination_project = find_project(new_project)
+    Gitlab.labels(source_project.id).each do |label|
+      begin
+        Gitlab.create_label(destination_project.id, label.name, label.color)
+      rescue => e
+          STDERR.puts "Could not create label on #{ARGV[0]}:"
+          STDERR.puts "  #{e}"
+          exit_code = 2
+      end
+    end
+  else
+    abort "Could not find project '#{new_project}'"
+  end
+else
+  abort "Could not find project '#{reference_project}'"
+end
+exit exit_code
