@@ -17,6 +17,7 @@ set -o vi
 
 # Aliases directory, if exists
 [ -d ~/.config/aliases ] && eval "$(cat ~/.config/aliases/*)"
+[ -d ~/.config/environment ] && eval "$(cat ~/.config/environment/*)"
 
 # Homebrew Setup
 if which brew > /dev/null; then
@@ -39,12 +40,20 @@ eval "$(rbenv init -)"
 # AWS CLI
 if which aws > /dev/null; then 
   complete -C aws_completer aws
+  function ip_for () {
+    aws ec2 describe-instances --filters "Name=tag:Name,Values=$1" | jq -r '.["Reservations"]|.[]|.Instances|.[]|.PublicIpAddress'
+  }
 fi
 
 # Go
 if which go > /dev/null; then
   export PATH=$PATH:/usr/local/opt/go/libexec/bin
   export GOPATH=~/.go
+fi
+
+# Android SDK
+if which android > /dev/null; then
+  export ANDROID_HOME=/usr/local/opt/android-sdk
 fi
 
 # My local scripts
@@ -56,5 +65,5 @@ export PATH="~/.bin:$PATH"
 #alias zless=$PAGER
 
 # Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+#BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
+#[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
