@@ -7,6 +7,8 @@ Plug 'kien/ctrlp.vim'       " Fuzzy search
 Plug 'scrooloose/syntastic' " Syntax checking
 Plug 'gregsexton/MatchTag'  " matching HTML tag highlighting
 Plug 'unblevable/quick-scope' "left-right movement
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 call plug#end()
 
 "let base16colorspace=256
