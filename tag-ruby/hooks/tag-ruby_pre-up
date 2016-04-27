@@ -1,5 +1,0 @@
-#!/bin/bash
-
-if [ ! -e $HOME/.rbenv ]; then
-  git clone https://github.com/sstephenson/rbenv $HOME/.rbenv
-fi
