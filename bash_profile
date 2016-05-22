@@ -1,4 +1,8 @@
 #!/bin/bash
+# If not running interactively, do not do anything
+[[ $- != *i* ]] && return
+[[ -z "$TMUX" ]] && exec tmux
+
 # Enable SSH-Agent
 #if [ -z "$SSH_AUTH_SOCK" ] ; then
 #  eval `ssh-agent -s`
@@ -69,6 +73,6 @@ export PATH="~/.bin:$PATH"
 #alias zless=$PAGER
 
 # Base16 Shell
-#BASE16_SHELL="$HOME/.config/base16-shell/base16-default.dark.sh"
-#[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+BASE16_SHELL="$HOME/.config/base16-shell/base16-monokai.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
