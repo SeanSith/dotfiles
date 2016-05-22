@@ -1,7 +1,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 call plug#begin('~/.vim/plugged')
-"Plug 'chriskempson/base16-vim' " Theme
+Plug 'chriskempson/base16-vim' " Theme
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin' 
 Plug 'kien/ctrlp.vim'       " Fuzzy search
 Plug 'scrooloose/syntastic' " Syntax checking
@@ -9,11 +9,13 @@ Plug 'gregsexton/MatchTag'  " matching HTML tag highlighting
 Plug 'unblevable/quick-scope' "left-right movement
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes' | Plug 'edkolev/tmuxline.vim'
+Plug 'airblade/vim-gitgutter' | Plug 'tpope/vim-fugitive'
+Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
-"let base16colorspace=256
-"set background=dark
-"colorscheme base16-default
+set background=dark
+colorscheme base16-monokai
 
 " Color text if over 80 columns
 "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -23,7 +25,19 @@ syntax on
 set noautoindent
 set incsearch	" Find the next match as we type the search
 set hlsearch	" Highlight search by default
-"set paste	" Don't retab everything when pasting
+set paste	" Don't retab everything when pasting
+set mouse=a
+set hidden	" Allow switch between buffers without saving
+
+" GitGutter
+let g:gitgutter_signs = 0
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_realtime = 1
+let g:gitgutter_eager = 1
+highlight SignColumn ctermbg=black
+
+"EditorConfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 " Relative and Absolute Numbers
 nnoremap <silent><leader>n :set number!<cr> :set relativenumber!<cr>
@@ -58,7 +72,12 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Toggle
 map <C-d> :NERDTreeToggle<CR>
 " Close vim if no other windows than NERDTree are open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " unblevable/quick-scope
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Vim-Airline customization
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline_powerline_fonts = 1
