@@ -26,9 +26,10 @@ set -o vi
 # Homebrew Setup
 if which brew > /dev/null; then
   alias caskrepo='cd "$(brew --repository)"/Library/Taps/caskroom/homebrew-cask'
-  # Homebrew/PHP PHP 5.6
   export PATH="/usr/local/sbin:$PATH"
+  # Homebrew/PHP PHP 5.6
   export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+  export PATH=~/.composer/vendor/bin:$PATH
 fi
 
 # rbenv
