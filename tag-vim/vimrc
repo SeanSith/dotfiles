@@ -12,6 +12,7 @@ Plug 'tpope/vim-repeat'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes' | Plug 'edkolev/tmuxline.vim'
 Plug 'airblade/vim-gitgutter' | Plug 'tpope/vim-fugitive'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'valloric/YouCompleteMe'
 call plug#end()
 
 set background=dark
