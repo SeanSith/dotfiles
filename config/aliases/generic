@@ -1,6 +1,5 @@
 alias ls='ls -G'
 alias ll='ls -lG'
-alias passgen='openssl rand -base64 8 |md5 |head -c20;echo'
 alias postgres_start='postgres -D /usr/local/var/postgres'
 alias weather='curl -4 wttr.in/Louisville-KY'
 alias moon='curl wttr.in/Moon'
