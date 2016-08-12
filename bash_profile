@@ -33,8 +33,10 @@ if which brew > /dev/null; then
 fi
 
 # rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+if [ -d ~/.rbenv ]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
 
 # ChefDK Stuff (not the full load)
 [ -d /opt/chefdk/bin ] && export PATH="/opt/chefdk/bin:$PATH"
