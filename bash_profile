@@ -1,7 +1,4 @@
 #!/bin/bash
-# If not running interactively, do not do anything
-#[[ $- != *i* ]] && return
-#[[ -z "$TMUX" ]] && exec tmux
 
 # Enable SSH-Agent
 #if [ -z "$SSH_AUTH_SOCK" ] ; then
@@ -45,7 +42,7 @@ fi
 [ -d ~/.pear/bin ] && export PATH="~/.pear/bin:$PATH"
 
 # AWS CLI
-if which aws > /dev/null; then 
+if which aws > /dev/null; then
   complete -C aws_completer aws
   function ip_for () {
     aws ec2 describe-instances --filters "Name=tag:Name,Values=$1" | jq -r '.["Reservations"]|.[]|.Instances|.[]|.PublicIpAddress'
@@ -77,12 +74,8 @@ fi
 # My local scripts
 export PATH="~/.bin:$PATH"
 
-# vimpager
-#export PAGER=/usr/local/bin/vimpager
-#alias less=$PAGER
-#alias zless=$PAGER
-
 # Base16 Shell
 #BASE16_SHELL="$HOME/.config/base16-shell/base16-monokai.dark.sh"
 #[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
