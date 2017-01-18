@@ -71,6 +71,9 @@ if [ -d ~/.pyenv ]; then
   eval "$(pyenv init -)"
 fi
 
+# Java
+export JAVA_HOME=$(/usr/libexec/java_home)
+
 # My local scripts
 export PATH="~/.bin:$PATH"
 
