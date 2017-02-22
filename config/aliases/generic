@@ -1,5 +1,4 @@
 alias ls='ls -G'
 alias ll='ls -lG'
-alias postgres_start='postgres -D /usr/local/var/postgres'
-alias weather='curl -4 wttr.in/Louisville-KY'
+alias weather='curl -4 wttr.in'
 alias moon='curl wttr.in/Moon'
