@@ -1,17 +1,16 @@
 #!/bin/bash
 
-# Enable SSH-Agent
-#if [ -z "$SSH_AUTH_SOCK" ] ; then
-#  eval `ssh-agent -s`
-#  ssh-add
-#fi
 # Use gpg-agent
-if [ -f "${HOME}/.gpg-agent-info" ]; then
-  . "${HOME}/.gpg-agent-info"
+if [ -f $HOME/.gpg-agent-info ]; then
+  source $HOME/.gpg-agent-info
   export GPG_AGENT_INFO
   export SSH_AUTH_SOCK
+  export GPG_TTY=$(tty)
+elif [ -z "$SSH_AUTH_SOCK" ]; then
+  # Enable SSH-Agent
+  eval `ssh-agent -s`
 fi
-export GPG_TTY=$(tty)
+[ $(uname) ] && ssh-add -A > /dev/null 2>&1 || ssh-add > /dev/null 2>&1
 
 # Set Vi keybindings in Bash
 set -o vi
