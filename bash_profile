@@ -20,6 +20,17 @@ set -o vi
 [ -d ~/.config/aliases ] && eval "$(cat ~/.config/aliases/*)"
 [ -d ~/.config/environment ] && eval "$(cat ~/.config/environment/*)"
 
+# Git Autocompletion and Prompt
+[ -f /usr/local/etc/bash_completion.d/git-completion.bash ] && \
+  source /usr/local/etc/bash_completion.d/git-completion.bash
+if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
+  source /usr/local/etc/bash_completion.d/git-prompt.sh
+  export GIT_PS1_SHOWCOLORHINTS=1
+  export GIT_PS1_SHOWDIRTYSTATE=1
+  export GIT_PS1_STATESEPARATOR=''
+  export PROMPT_COMMAND='__git_ps1 "\u@\h:\W" "\\\$ "'
+fi
+
 # Homebrew Setup
 if which brew > /dev/null; then
   alias caskrepo='cd "$(brew --repository)"/Library/Taps/caskroom/homebrew-cask'
