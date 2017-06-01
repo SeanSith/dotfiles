@@ -15,7 +15,7 @@
 	required = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
@@ -26,3 +26,9 @@
 
 [alias]
 	graph = !git --no-pager log --all -n 15 --graph --abbrev-commit --decorate --format=tformat:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an <%ce>%C(reset)'
+	stop-tracking = !git update-index --assume-unchanged
+	start-tracking = !git update-index --no-assume-unchanged
+[credential]
+	helper = osxkeychain
+[help]
+	autocorrect = 1
