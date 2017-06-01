@@ -10,7 +10,11 @@ elif [ -z "$SSH_AUTH_SOCK" ]; then
   # Enable SSH-Agent
   eval `ssh-agent -s`
 fi
-[ $(uname) ] && ssh-add -A > /dev/null 2>&1 || ssh-add > /dev/null 2>&1
+if [ $(uname) == 'Darwin' ]; then
+  ssh-add -A > /dev/null 2>&1
+else
+  ssh-add > /dev/null 2>&1
+fi
 
 # Set VI keybindings in Bash
 set -o vi
