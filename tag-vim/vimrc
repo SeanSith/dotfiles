@@ -9,6 +9,7 @@ Plug 'gregsexton/MatchTag'  " matching HTML tag highlighting
 Plug 'unblevable/quick-scope' "left-right movement
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-git'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes' | Plug 'edkolev/tmuxline.vim'
 Plug 'airblade/vim-gitgutter' | Plug 'tpope/vim-fugitive'
 Plug 'editorconfig/editorconfig-vim'
