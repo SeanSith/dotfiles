@@ -55,10 +55,6 @@ source $HOME/.asdf/completions/asdf.bash
 [ -e /usr/libexec/java_home ] && \
   export JAVA_HOME=$(/usr/libexec/java_home --failfast > /dev/null 2>&1)
 
-# WP-CLI
-[ -f /usr/local/etc/bash_completion.d/wp-completion.bash ] && \
-  source /usr/local/etc/bash_completion.d/wp-completion.bash
-
 # My local scripts
 export PATH="$HOME/.bin:$PATH"
 
