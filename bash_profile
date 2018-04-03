@@ -28,12 +28,10 @@ if which brew > /dev/null; then
   alias caskrepo='cd "$(brew --repository)"/Library/Taps/caskroom/homebrew-cask'
   export PATH="/usr/local/sbin:$PATH"
   # PHP
-  php_packages=$(brew list --full-name | grep 'homebrew/php')
-  php_version=$(echo "$php_packages" | grep 'homebrew/php/php')
+  php_version=$(brew list --full-name | grep 'homebrew/php/php')
   if [ -n "$php_version" ]; then
     export PATH="$(brew --prefix $php_version)/bin:$PATH"
     # Composer
-    [ $(echo "$php_packages" | grep 'homebrew/php/composer') ] && \
       export PATH=$HOME/.composer/vendor/bin:$PATH
     # Pear
     [ -d $HOME/.pear/bin ] && export PATH="$HOME/.pear/bin:$PATH"
