@@ -51,11 +51,9 @@ if which brew > /dev/null; then
   fi
 fi
 
-# rbenv
-if [ -d $HOME/.rbenv ]; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$(rbenv init -)"
-fi
+# ASDF
+source $HOME/.asdf/asdf.sh
+source $HOME/.asdf/completions/asdf.bash
 
 # ChefDK Stuff (not the full load)
 [ -d /opt/chefdk/bin ] && export PATH="/opt/chefdk/bin:$PATH"
@@ -78,17 +76,6 @@ fi
 # Android SDK
 [ $(which android > /dev/null 2>&1) ] && \
   export ANDROID_HOME=/usr/local/opt/android-sdk
-
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
-
-# pyenv
-if [ -d $HOME/.pyenv ]; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  export PATH="$PYENV_ROOT/bin:$PATH"
-  eval "$(pyenv init -)"
-fi
 
 # Java
 [ -e /usr/libexec/java_home ] && \
