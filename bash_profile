@@ -23,17 +23,6 @@ set -o vi
 [ -d $HOME/.config/aliases ] && eval "$(cat $HOME/.config/aliases/*)"
 [ -d $HOME/.config/environment ] && eval "$(cat $HOME/.config/environment/*)"
 
-# Git Autocompletion and Prompt
-[ -f /usr/local/etc/bash_completion.d/git-completion.bash ] && \
-  source /usr/local/etc/bash_completion.d/git-completion.bash
-if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
-  source /usr/local/etc/bash_completion.d/git-prompt.sh
-  export GIT_PS1_SHOWCOLORHINTS=1
-  export GIT_PS1_SHOWDIRTYSTATE=1
-  export GIT_PS1_STATESEPARATOR=''
-  export PROMPT_COMMAND='__git_ps1 "\u@\h:\W" "\\\$ "'
-fi
-
 # Homebrew Setup
 if which brew > /dev/null; then
   alias caskrepo='cd "$(brew --repository)"/Library/Taps/caskroom/homebrew-cask'
@@ -58,21 +47,6 @@ source $HOME/.asdf/completions/asdf.bash
 # ChefDK Stuff (not the full load)
 [ -d /opt/chefdk/bin ] && export PATH="/opt/chefdk/bin:$PATH"
 
-# AWS CLI
-if [ $(which aws > /dev/null 2>&1) ]; then
-  complete -C aws_completer aws
-  function ip_for () {
-    aws ec2 describe-instances --filters "Name=tag:Name,Values=$1" | \\
-      jq -r '.["Reservations"]|.[]|.Instances|.[]|.PublicIpAddress'
-  }
-fi
-
-# Go
-if [ $(which go > /dev/null 2>&1) ]; then
-  export PATH=$PATH:/usr/local/opt/go/libexec/bin
-  export GOPATH=$HOME/.go
-fi
-
 # Android SDK
 [ $(which android > /dev/null 2>&1) ] && \
   export ANDROID_HOME=/usr/local/opt/android-sdk
@@ -88,9 +62,25 @@ fi
 # My local scripts
 export PATH="$HOME/.bin:$PATH"
 
-# Base16 Shell
-#BASE16_SHELL="$HOME/.config/base16-shell/base16-monokai.dark.sh"
-#[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+# AWS CLI Autocompletion
+if [ $(which aws > /dev/null 2>&1) ]; then
+  complete -C aws_completer aws
+  function ip_for () {
+    aws ec2 describe-instances --filters "Name=tag:Name,Values=$1" | \\
+      jq -r '.["Reservations"]|.[]|.Instances|.[]|.PublicIpAddress'
+  }
+fi
+
+# Git Autocompletion and Prompt Window Dressing
+[ -f /usr/local/etc/bash_completion.d/git-completion.bash ] && \
+  source /usr/local/etc/bash_completion.d/git-completion.bash
+if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
+  source /usr/local/etc/bash_completion.d/git-prompt.sh
+  export GIT_PS1_SHOWCOLORHINTS=1
+  export GIT_PS1_SHOWDIRTYSTATE=1
+  export GIT_PS1_STATESEPARATOR=''
+  export PROMPT_COMMAND='__git_ps1 "\u@\h:\W" "\\\$ "'
+fi
 
 [ TERM_PROGRAM == "iTerm.app" ] && \
   [ -e "$HOME/.iterm2_shell_integration.bash" ] && \
