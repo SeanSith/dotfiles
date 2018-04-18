@@ -1,12 +1,13 @@
 #!/bin/bash
 
 # Use gpg-agent
-if [ -f $HOME/.gpg-agent-info ]; then
-  source $HOME/.gpg-agent-info
-  export GPG_AGENT_INFO
-  export SSH_AUTH_SOCK
-  export GPG_TTY=$(tty)
-elif [ -z "$SSH_AUTH_SOCK" ]; then
+#if [ -f $HOME/.gpg-agent-info ]; then
+#  source $HOME/.gpg-agent-info
+#  export GPG_AGENT_INFO
+#  export SSH_AUTH_SOCK
+#  export GPG_TTY=$(tty)
+#elif [ -z "$SSH_AUTH_SOCK" ]; then
+if [ -z "$SSH_AUTH_SOCK" ]; then
   # Enable SSH-Agent
   eval `ssh-agent -s`
 fi
@@ -32,7 +33,7 @@ if which brew > /dev/null; then
   if [ -n "$php_version" ]; then
     export PATH="$(brew --prefix $php_version)/bin:$PATH"
     # Composer
-      export PATH=$HOME/.composer/vendor/bin:$PATH
+    export PATH=$HOME/.composer/vendor/bin:$PATH
     # Pear
     [ -d $HOME/.pear/bin ] && export PATH="$HOME/.pear/bin:$PATH"
   fi
@@ -56,20 +57,10 @@ source $HOME/.asdf/completions/asdf.bash
 # My local scripts
 export PATH="$HOME/.bin:$PATH"
 
-# AWS CLI Autocompletion
-if [ $(which aws > /dev/null 2>&1) ]; then
-  complete -C aws_completer aws
-  function ip_for () {
-    aws ec2 describe-instances --filters "Name=tag:Name,Values=$1" | \\
-      jq -r '.["Reservations"]|.[]|.Instances|.[]|.PublicIpAddress'
-  }
-fi
-
-# Git Autocompletion and Prompt Window Dressing
-[ -f /usr/local/etc/bash_completion.d/git-completion.bash ] && \
-  source /usr/local/etc/bash_completion.d/git-completion.bash
-if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
-  source /usr/local/etc/bash_completion.d/git-prompt.sh
+# Bash Autocompletion and Prompt Window Dressing for Git
+# `brew install bash-completion`
+if [ -f /usr/local/etc/bash_completion ]; then 
+  source /usr/local/etc/bash_completion
   export GIT_PS1_SHOWCOLORHINTS=1
   export GIT_PS1_SHOWDIRTYSTATE=1
   export GIT_PS1_STATESEPARATOR=''
