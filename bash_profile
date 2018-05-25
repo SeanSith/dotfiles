@@ -29,7 +29,7 @@ if which brew > /dev/null; then
   alias caskrepo='cd "$(brew --repository)"/Library/Taps/caskroom/homebrew-cask'
   export PATH="/usr/local/sbin:$PATH"
   # PHP
-  php_version=$(brew list --full-name | grep 'homebrew/php/php')
+  php_version=$(brew list --full-name | grep 'php@')
   if [ -n "$php_version" ]; then
     export PATH="$(brew --prefix $php_version)/bin:$PATH"
     # Composer
