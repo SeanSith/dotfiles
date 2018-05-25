@@ -1,6 +1,3 @@
 alias flushdns='sudo killall -HUP mDNSResponder'
-alias yosemiteusb='sudo /Applications/Install\ OS\ X\ Yosemite.app/Contents/Resources/createinstallmedia --volume /Volumes/Install\ OS\ X\ Yosemite --applicationpath /Applications/Install\ OS\ X\ Yosemite.app --nointeraction'
-alias elcapitanusb='sudo /Applications/Install\ OS\ X\ El\ Capitan.app/Contents/Resources/createinstallmedia --volume /Volumes/Install\ OS\ X\ El\ Capitan --applicationpath /Applications/Install\ OS\ X\ El\ Capitan.app --nointeraction'
 alias sierrausb='sudo /Applications/Install\ macOS\ Sierra.app/Contents/Resources/createinstallmedia --volume /Volumes/Install\ macOS\ Sierra --applicationpath /Applications/Install\ macOS\ Sierra.app'
 alias highsierrausb='sudo /Applications/Install\ macOS\ High\ Sierra.app/Contents/Resources/createinstallmedia --volume /Volumes/Install\ macOS\ High\ Sierra --applicationpath /Applications/Install\ macOS\ High\ Sierra.app'
-alias updatecasks="brew cask outdated | awk {'print $1'} | while read name; do brew cask uninstall $name && brew cask install $name; done"
