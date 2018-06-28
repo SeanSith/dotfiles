@@ -26,7 +26,7 @@ set -o vi
 
 # Homebrew Setup
 if which brew > /dev/null; then
-  alias caskrepo='cd "$(brew --repository)"/Library/Taps/caskroom/homebrew-cask'
+  alias caskrepo='cd "$(brew --repository)"/Library/Taps/homebrew/homebrew-cask'
   export PATH="/usr/local/sbin:$PATH"
   # PHP
   php_version=$(brew list --full-name | grep 'php@')
