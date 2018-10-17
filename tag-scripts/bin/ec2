@@ -1,0 +1,84 @@
+#!/bin/bash
+
+function usage () {
+  cat <<USAGE 1>&2
+
+Usage: `basename $0` [-h] [list|password|status] [-ik]
+  list - List all instances
+  password [pemfile] - Provides the 'Administrator' password
+    -i instance-id
+    -k instance launch key
+  status - Shows instance status
+    -i instance -id
+
+USAGE
+}
+
+function parse_subcommand () {
+  shift
+  while getopts ":i:k:" opt; do
+    case $opt in
+      i)
+        ID=$OPTARG
+        ;;
+      k)
+        KEY=$OPTARG
+        ;;
+      \?)
+        echo "Invalid option: -$OPTARG" 1>&2
+        exit 1
+        ;;
+      :)
+        echo "Invalid argument: -$OPTARG requires an argument" 1>&2
+        exit 1
+        ;;
+    esac
+  done
+}
+
+function instance_detail () {
+  jq '.Reservations[].Instances[] | 
+         { 
+           Name: .Tags[] | select(.Key == "Name")|.Value, 
+           InstanceId: .InstanceId, 
+           State: .State.Name, 
+           IpAddress: .PublicIpAddress,
+           KeyName: .KeyName
+         }'
+}
+
+### Main
+
+while getopts ":h" opt; do
+  case $opt in
+    h)
+      usage
+      exit 0
+      ;;    
+    \?)
+      usage
+      exit 1
+      ;;
+  esac
+done
+shift $((OPTIND -1))
+
+
+case $1 in
+  list )
+    aws ec2 describe-instances | instance_detail
+    ;;
+  password )
+    parse_subcommand $@
+    if [[ $KEY == '' || $INSTANCE_ID == '' ]]; then
+      usage
+      exit 1
+    fi
+    aws ec2 get-password-data --instance-id $INSTANCE_ID --priv-launch-key $KEY | \
+       jq '.PasswordData | { Password: . }'
+    ;;
+  status)
+    parse_subcommand $@
+    aws ec2 describe-instances --instance-id $INSTANCE_ID | instance_detail
+    ;;
+esac
