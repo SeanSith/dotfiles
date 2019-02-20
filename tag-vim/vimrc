@@ -6,7 +6,7 @@ Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'kien/ctrlp.vim'       " Fuzzy search
 Plug 'junegunn/fzf'
 Plug 'scrooloose/syntastic' " Syntax checking
-Plug 'gregsexton/MatchTag'  " matching HTML tag highlighting
+Plug 'Valloric/MatchTagAlways'  " matching HTML tag highlighting
 Plug 'unblevable/quick-scope' "left-right movement
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
