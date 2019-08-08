@@ -1,0 +1,34 @@
+#!/bin/bash
+
+request="--validation-method DNS --domain-name $1"
+
+if [ "$2" != '' ]; then
+  request="$request --subject-alternative-name $2"
+fi
+
+echo "Creating certificate for $1 $2"
+certificate_arn=$(aws acm request-certificate $request | jq --raw-output .CertificateArn)
+
+echo "Sleeping 15 seconds to allow for the certificate validation methods to be created"
+sleep 15
+
+echo "Retrieving certificate $certificate_arn description"
+if [ "$certificate_arn" != '' ]; then
+  description=$(aws acm describe-certificate --certificate-arn $certificate_arn)
+else
+  echo "Failed to create certificate for $1." >&2
+fi
+
+if [ "$description" != '' ]; then
+  echo "$description" | jq -r '.Certificate.DomainValidationOptions[].ResourceRecord | "\(.Name) \(.Type) \(.Value)"' | while read -r record
+  do
+    if cli53 rrcreate "$1" "$record"; then
+      echo "" >&2
+    else
+      echo "Failed to create RR for $record within $1" >&2
+    fi
+  done
+else
+  echo "Failed to retrieve certificate $certificate_arn for domain $1" >&2
+fi
+
