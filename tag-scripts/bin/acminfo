@@ -1,0 +1,9 @@
+#!/bin/bash
+echo "DomainName,ValidationMethod"
+aws acm list-certificates | \
+  jq --raw-output '.CertificateSummaryList[].CertificateArn' | \
+  while read arn
+do 
+  aws acm describe-certificate --certificate-arn $arn | \
+    jq '.Certificate.DomainValidationOptions[] | "\(.DomainName),\(.ValidationMethod)"'
+done
