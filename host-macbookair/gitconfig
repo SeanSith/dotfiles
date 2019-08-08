@@ -9,7 +9,6 @@
 	filemode = true
 	editor = /usr/bin/vim
 	excludesfile = /Users/sean/.gitignore_global
-	autocrlf = true
 [filter "media"]
 	clean = git media clean %f
 	smudge = git media smudge %f
