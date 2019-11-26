@@ -91,3 +91,6 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline_powerline_fonts = 1
+
+" Split line on cursor with S
+nnoremap S :keeppatterns substitute/\s*\%#\s*/\r/e <bar> normal! ==<CR>
