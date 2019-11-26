@@ -1,3 +1,4 @@
 alias be='bundle exec'
 alias bi='bundle install'
 alias ber='bundle exec rails'
+alias set_java_home='export JAVA_HOME=$(asdf where java)'
