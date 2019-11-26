@@ -52,8 +52,8 @@ export PATH="$HOME/.bin:$PATH"
 
 # Bash Autocompletion and Prompt Window Dressing for Git
 # `brew install bash-completion`
-if [ -f /usr/local/etc/bash_completion ]; then 
-  source /usr/local/etc/bash_completion
+if [ -f /usr/local/etc/profile.d/bash_completion.sh ]; then
+  source /usr/local/etc/profile.d/bash_completion.sh
   export GIT_PS1_SHOWCOLORHINTS=1
   export GIT_PS1_SHOWDIRTYSTATE=1
   export GIT_PS1_STATESEPARATOR=''
