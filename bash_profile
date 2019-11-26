@@ -43,10 +43,6 @@ source $HOME/.asdf/completions/asdf.bash
 [ $(which android > /dev/null 2>&1) ] && \
   export ANDROID_HOME=/usr/local/opt/android-sdk
 
-# Java
-[ -e /usr/libexec/java_home ] && \
-  export JAVA_HOME=$(/usr/libexec/java_home --failfast > /dev/null 2>&1)
-
 # My local scripts
 export PATH="$HOME/.bin:$PATH"
 
