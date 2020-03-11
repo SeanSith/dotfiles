@@ -1,0 +1,11 @@
+# Homebrew Setup
+if which brew > /dev/null; then
+  alias caskrepo='cd "$(brew --repository)"/Library/Taps/homebrew/homebrew-cask'
+  export PATH="/usr/local/sbin:$PATH"
+fi
+
+[ TERM_PROGRAM == "iTerm.app" ] && \
+  [ -e "$HOME/.iterm2_shell_integration.bash" ] && \
+    source "$HOME/.iterm2_shell_integration.bash"
+
+export BASH_SILENCE_DEPRECATION_WARNING=1

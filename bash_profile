@@ -24,24 +24,7 @@ set -o vi
 [ -d $HOME/.config/aliases ] && eval "$(cat $HOME/.config/aliases/*)"
 [ -d $HOME/.config/environment ] && eval "$(cat $HOME/.config/environment/*)"
 
-# Homebrew Setup
-if which brew > /dev/null; then
-  alias caskrepo='cd "$(brew --repository)"/Library/Taps/homebrew/homebrew-cask'
-  export PATH="/usr/local/sbin:$PATH"
-fi
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# ASDF
-source $HOME/.asdf/asdf.sh
-source $HOME/.asdf/completions/asdf.bash
-
-# ChefDK Stuff (not the full load)
-[ -d /opt/chefdk/bin ] && export PATH="/opt/chefdk/bin:$PATH"
-
-# Android SDK
-[ $(which android > /dev/null 2>&1) ] && \
-  export ANDROID_HOME=/usr/local/opt/android-sdk
 
 # My local scripts
 export PATH="$HOME/.bin:$PATH"
@@ -55,7 +38,3 @@ if [ -f /usr/local/etc/profile.d/bash_completion.sh ]; then
   export GIT_PS1_STATESEPARATOR=''
   export PROMPT_COMMAND='__git_ps1 "\u@\h:\W" "\\\$ "'
 fi
-
-[ TERM_PROGRAM == "iTerm.app" ] && \
-  [ -e "$HOME/.iterm2_shell_integration.bash" ] && \
-    source "$HOME/.iterm2_shell_integration.bash"
