@@ -17,8 +17,6 @@
 	start-tracking = !git update-index --no-assume-unchanged
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	delete-merged = "!git branch --merged | grep -v \"^\\s*master$\" | grep -v \"\\*\" | xargs -n 1 git branch -d"
-[credential]
-	helper = osxkeychain
 [help]
 	autocorrect = 1
 [include]
