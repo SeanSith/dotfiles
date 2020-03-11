@@ -1,3 +1,5 @@
 [user]
 	email = sean@seansith.com
 	name = Sean Smith
+[credential]
+	helper = osxkeychain
