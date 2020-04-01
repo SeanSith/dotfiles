@@ -1,2 +1,2 @@
---database=mysql --skip-system-test --skip-test --skip-spring --skip-action-cable --skip-active-storage --skip-sprockets
+--database=mysql --skip-system-test --skip-test --skip-spring --skip-action-cable --skip-action-mailbox --skip-action-mailer --skip-active-storage --skip-action-text --skip-sprockets
 
