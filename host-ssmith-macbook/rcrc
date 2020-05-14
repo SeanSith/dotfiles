@@ -3,7 +3,7 @@ EXCLUDES="README.md LICENSE"
 DOTFILES_DIRS="$HOME/.dotfiles $HOME/.dotfiles-local"
 #HOSTNAME=""
 
-TAGS="macos vim scripts ruby chef"
+TAGS="work macos vim scripts ruby chef"
 
 #SYMLINK_DIRS=""
 
