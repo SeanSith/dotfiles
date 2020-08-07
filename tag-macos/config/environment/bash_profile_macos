@@ -9,3 +9,5 @@ fi
     source "$HOME/.iterm2_shell_integration.bash"
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
+
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
