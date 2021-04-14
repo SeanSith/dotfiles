@@ -43,9 +43,9 @@ highlight SignColumn ctermbg=black
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 " Relative and Absolute Numbers
-nnoremap <silent><leader>n :set number!<cr> :set relativenumber!<cr>
-:au FocusLost * :set number
-:au FocusGained * :set relativenumber
+"nnoremap <silent><leader>n :set number!<cr> :set relativenumber!<cr>
+":au FocusLost * :set number
+":au FocusGained * :set relativenumber
 
 " Move between splits/windows
 nnoremap <C-h> <C-W>h
