@@ -1,5 +1,6 @@
-solargraph
-rubocop
-ruby-debug-ide
+awesome-print
 debase
 foreman
+rubocop
+ruby-debug-ide
+solargraph
