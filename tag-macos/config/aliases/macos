@@ -1,4 +1,0 @@
-alias flushdns='sudo killall -HUP mDNSResponder'
-alias highsierrausb='sudo /Applications/Install\ macOS\ High\ Sierra.app/Contents/Resources/createinstallmedia --volume /Volumes/Install\ macOS\ High\ Sierra --applicationpath /Applications/Install\ macOS\ High\ Sierra.app'
-alias mojaveusb='sudo /Applications/Install\ macOS\ Mojave.app/Contents/Resources/createinstallmedia --volume /Volumes/Install\ macOS\ Mojave'
-alias catalinausb='sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/Install\ macOS\ High\ Sierra'
