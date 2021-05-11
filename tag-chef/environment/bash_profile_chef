@@ -1,2 +1,0 @@
-# ChefDK Stuff (not the full load)
-[ -d /opt/chefdk/bin ] && export PATH="/opt/chefdk/bin:$PATH"
