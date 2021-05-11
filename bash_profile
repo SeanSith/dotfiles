@@ -37,3 +37,16 @@ if [ -f /usr/local/etc/profile.d/bash_completion.sh ]; then
   export GIT_PS1_STATESEPARATOR=''
   export PROMPT_COMMAND='__git_ps1 "\u@\h:\W" "\\\$ "'
 fi
+
+alias ls='ls -G'
+alias ll='ls -lG'
+alias weather='curl -4 wttr.in'
+alias moon='curl wttr.in/Moon'
+
+check-tls-expiration() {
+  echo | \
+  openssl s_client -servername $1 -connect ${1}:443 2>/dev/null | \
+  openssl x509 -noout -dates
+}
+
+alias dcr='docker-compose run --rm'
