@@ -11,7 +11,7 @@ elif [ -z "$SSH_AUTH_SOCK" ]; then
   eval `ssh-agent -s`
 fi
 if [ $(uname) == 'Darwin' ]; then
-  ssh-add -A > /dev/null 2>&1
+  ssh-add -K > /dev/null 2>&1
 else
   ssh-add > /dev/null 2>&1
 fi
@@ -49,4 +49,4 @@ check-tls-expiration() {
   openssl x509 -noout -dates
 }
 
-alias dcr='docker-compose run --rm'
+alias dcr='docker compose run --rm'
