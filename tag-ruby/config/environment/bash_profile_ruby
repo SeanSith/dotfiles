@@ -2,10 +2,6 @@
 source $HOME/.asdf/asdf.sh
 source $HOME/.asdf/completions/asdf.bash
 
-# Speed up native extensions
-# https://build.betterup.com/one-weird-trick-that-will-speed-up-your-bundle-install/
-export MAKE="make -j$(nproc)"
-
 alias be='bundle exec'
 alias bi='bundle install'
 alias ber='bundle exec rails'
