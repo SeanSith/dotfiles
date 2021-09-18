@@ -1,6 +1,11 @@
 # ASDF
-source $HOME/.asdf/asdf.sh
-source $HOME/.asdf/completions/asdf.bash
+if [[ $(uname) == 'Darwin' ]]; then
+  source /usr/local/lib/asdf.sh
+  source /usr/local/etc/bash_completion.d/asdf.bash
+else
+  source $HOME/.asdf/asdf.sh
+  source $HOME/.asdf/completions/asdf.bash
+fi
 
 alias be='bundle exec'
 alias bi='bundle install'
