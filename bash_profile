@@ -1,15 +1,5 @@
 #!/bin/bash
 
-# Use gpg-agent over ssh-agent if we do that thing.
-if [ -f $HOME/.gpg-agent-info ]; then
-  source $HOME/.gpg-agent-info
-  export GPG_AGENT_INFO
-  export SSH_AUTH_SOCK
-  export GPG_TTY=$(tty)
-elif [ -z "$SSH_AUTH_SOCK" ]; then
-  # Enable SSH-Agent
-  eval `ssh-agent -s`
-fi
 if [ $(uname) == 'Darwin' ]; then
   ssh-add -K > /dev/null 2>&1
 else
