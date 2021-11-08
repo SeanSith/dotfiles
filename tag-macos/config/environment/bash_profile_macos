@@ -1,8 +1,23 @@
 # Homebrew Setup
-[ $(uname -p) == 'arm' ] && eval $(/opt/homebrew/bin/brew shellenv)
+if [ $(uname -p) == 'arm' ]; then
+  eval $(/opt/homebrew/bin/brew shellenv)
+else
+  eval $(/usr/local/bin/brew shellenv)
+fi
+
 if which brew > /dev/null; then
   alias caskrepo='cd "$(brew --repository)"/Library/Taps/homebrew/homebrew-cask'
-  export PATH="/usr/local/sbin:$PATH"
+  export PATH="$(brew --prefix)/sbin:$PATH"
+fi
+
+# Bash Autocompletion and Prompt Window Dressing for Git
+# `brew install bash-completion`
+if [ -f $(brew --prefix)/etc/profile.d/bash_completion.sh ]; then
+  source $(brew --prefix)/etc/profile.d/bash_completion.sh
+  export GIT_PS1_SHOWCOLORHINTS=1
+  export GIT_PS1_SHOWDIRTYSTATE=1
+  export GIT_PS1_STATESEPARATOR=''
+  export PROMPT_COMMAND='__git_ps1 "\u@\h:\W" "\\\$ "'
 fi
 
 [ TERM_PROGRAM == "iTerm.app" ] && \
