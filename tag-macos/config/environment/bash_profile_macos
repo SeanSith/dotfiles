@@ -14,6 +14,5 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 alias flushdns='sudo killall -HUP mDNSResponder'
-alias highsierrausb='sudo /Applications/Install\ macOS\ High\ Sierra.app/Contents/Resources/createinstallmedia --volume /Volumes/Install\ macOS\ High\ Sierra --applicationpath /Applications/Install\ macOS\ High\ Sierra.app'
-alias catalinausb='sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/Install\ macOS\ High\ Sierra'
-alias mojaveusb='sudo /Applications/Install\ macOS\ Mojave.app/Contents/Resources/createinstallmedia --volume /Volumes/Install\ macOS\ Mojave'
+alias bigsurusb='sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstallmedia --volume /Volumes/Install\ macOS\ Big\ Sur --applicationpath /Applications/Install\ macOS\ Big\ Sur.app'
+alias montereyusb='sudo /Applications/Install\ macOS\ Monterey.app/Contents/Resources/createinstallmedia --volume /Volumes/Install\ macOS\ Monterey'
