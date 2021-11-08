@@ -1,4 +1,5 @@
 # Homebrew Setup
+[ $(uname -p) == 'arm' ] && eval $(/opt/homebrew/bin/brew shellenv)
 if which brew > /dev/null; then
   alias caskrepo='cd "$(brew --repository)"/Library/Taps/homebrew/homebrew-cask'
   export PATH="/usr/local/sbin:$PATH"
