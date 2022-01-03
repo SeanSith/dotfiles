@@ -1,0 +1,2 @@
+alias set_java_home='export JAVA_HOME=$(asdf where java)'
+set_java_home

@@ -1,15 +1,4 @@
-# ASDF
-if [[ $(uname) == 'Darwin' ]]; then
-  [ $(sysctl -n sysctl.proc_translated) -eq 1 ] && export ASDF_DATA_DIR=${HOME}/.asdf-rosetta2
-  source $(brew --prefix asdf)/libexec/asdf.sh
-  source $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
-else
-  source $HOME/.asdf/asdf.sh
-  source $HOME/.asdf/completions/asdf.bash
-fi
-
 alias be='bundle exec'
 alias bi='bundle install'
 alias ber='bundle exec rails'
-alias set_java_home='export JAVA_HOME=$(asdf where java)'
 alias irb='pry'
