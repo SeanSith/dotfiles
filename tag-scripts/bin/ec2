@@ -43,7 +43,10 @@ function instance_detail () {
            InstanceId: .InstanceId, 
            State: .State.Name, 
            IpAddress: .PublicIpAddress,
-           KeyName: .KeyName
+           KeyName: .KeyName,
+           Project: .Tags[] | select(.Key == "Project")|.Value,
+           Stages: .Tags[] | select(.Key == "Stages")|.Value,
+           Roles: .Tags[] | select(.Key == "Roles")|.Value,
          }'
 }
 
