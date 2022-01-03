@@ -4,7 +4,7 @@
 	tool = vimdiff
 [core]
 	filemode = true
-	editor = /usr/local/bin/vim
+	editor = vim
 	excludesfile = ~/.gitignore_global
 	ignorecase = false
 [filter "media"]
