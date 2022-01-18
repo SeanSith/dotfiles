@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $(uname) == 'Darwin' ]; then
-  ssh-add -K > /dev/null 2>&1
+  ssh-add --apple-use-keychain > /dev/null 2>&1
 else
   ssh-add > /dev/null 2>&1
 fi
