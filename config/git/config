@@ -19,8 +19,6 @@
 	stop-tracking = update-index --assume-unchanged
 [help]
 	autocorrect = 1
-[include]
-	path = ~/.gitconfig_local
 [pull]
 	ff = only
 [fetch]
