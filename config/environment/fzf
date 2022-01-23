@@ -1,0 +1,11 @@
+if command -v fzf > /dev/null; then 
+  if command -v brew > /dev/null; then
+    # Auto-completion
+    # ---------------
+    [[ $- == *i* ]] && source "$(brew --prefix fzf)/shell/completion.bash" 2> /dev/null
+    
+    # Key bindings
+    # ------------
+    source "$(brew --prefix fzf)/shell/key-bindings.bash"
+ fi
+fi

@@ -12,4 +12,3 @@ set -o vi
 # Environment helpers
 [ -d $HOME/.config/environment ] && eval "$(cat $HOME/.config/environment/*)"
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
