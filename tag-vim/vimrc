@@ -1,63 +1,53 @@
 set nocompatible              " be iMproved, required
+set encoding=UTF-8
 filetype off                  " required
 call plug#begin('~/.vim/plugged')
-Plug 'chriskempson/base16-vim' " Theme
-Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'kien/ctrlp.vim'       " Fuzzy search
+Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf'
-Plug 'scrooloose/syntastic' " Syntax checking
+Plug 'scrooloose/syntastic'     " Syntax checking
 Plug 'Valloric/MatchTagAlways'  " matching HTML tag highlighting
-Plug 'unblevable/quick-scope' "left-right movement
+Plug 'unblevable/quick-scope'   " left-right movement
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-git'
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes' | Plug 'edkolev/tmuxline.vim'
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes' | Plug 'edkolev/tmuxline.vim' | Plug 'bling/vim-bufferline'
 Plug 'airblade/vim-gitgutter' | Plug 'tpope/vim-fugitive'
 Plug 'editorconfig/editorconfig-vim'
-"Plug 'valloric/YouCompleteMe'
+"Plug 'ycm-core/YouCompleteMe'
 call plug#end()
-
-set background=dark
-colorscheme base16-monokai
-
-" Color text if over 80 columns
-"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-"match OverLength /\%81v.\+/
 
 syntax on
 set noautoindent
 set incsearch	" Find the next match as we type the search
 set hlsearch	" Highlight search by default
 set paste	" Don't retab everything when pasting
-"set mouse=a
 set hidden	" Allow switch between buffers without saving
 
-" GitGutter
-let g:gitgutter_signs = 0
-let g:gitgutter_override_sign_column_highlight = 0
-let g:gitgutter_realtime = 1
-let g:gitgutter_eager = 1
-highlight SignColumn ctermbg=black
-
-"EditorConfig
-let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
-
-" Relative and Absolute Numbers
-"nnoremap <silent><leader>n :set number!<cr> :set relativenumber!<cr>
-":au FocusLost * :set number
-":au FocusGained * :set relativenumber
-
-" Move between splits/windows
-nnoremap <C-h> <C-W>h
-nnoremap <C-j> <C-W>j
-nnoremap <C-k> <C-W>k
-nnoremap <C-l> <C-W>l
+" Absolute Numbers
+nnoremap <silent><leader>n :set number!<cr>
 
 " Swap words
-:nnoremap <silent> gw "_yiw:s/\(\%#\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>
+nnoremap <silent> gw "_yiw:s/\(\%#\w\+\)\(\W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>
 
 " Write with sudo
 cmap w!! w !sudo tee > /dev/null %
+
+" Split line on cursor with S
+nnoremap S :keeppatterns substitute/\s*\%#\s*/\r/e <bar> normal! ==<CR>
+
+" FZF
+nnoremap <C-p> :FZF<CR>
+
+" GitGutter
+nnoremap <silent><leader>hh :GitGutterToggle<cr>
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+set updatetime=100
+let g:gitgutter_show_msg_on_hunk_jumping = 0
+let g:gitgutter_async = 0
+highlight SignColumn ctermbg=black
+
+" EditorConfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 " Syntastic Recommendations
 set statusline+=%#warningmsg#
@@ -66,7 +56,7 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 
 " NERDTree Customization
 " Start NERDTree when no files opened
@@ -85,5 +75,3 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline_powerline_fonts = 1
 
-" Split line on cursor with S
-nnoremap S :keeppatterns substitute/\s*\%#\s*/\r/e <bar> normal! ==<CR>
