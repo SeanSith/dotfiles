@@ -1,5 +1,5 @@
 if [[ $(uname) == 'Darwin' ]]; then
-  [ $(sysctl -n machdep.cpu.vendor) != "GenuineIntel" ] && \
+  [[ $(sysctl -n machdep.cpu.brand_string) =~ ^Apple ]] && \
     [ $(sysctl -n sysctl.proc_translated) -eq 1 ] && \
       export ASDF_DATA_DIR=${HOME}/.asdf-rosetta2
   source $(brew --prefix asdf)/libexec/asdf.sh
