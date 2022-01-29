@@ -19,7 +19,7 @@ syntax on
 set noautoindent
 set incsearch	" Find the next match as we type the search
 set hlsearch	" Highlight search by default
-set paste	" Don't retab everything when pasting
+"set paste	" Don't retab everything when pasting
 set hidden	" Allow switch between buffers without saving
 
 " Absolute Numbers
