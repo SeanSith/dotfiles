@@ -12,6 +12,7 @@
 	required = true
 [alias]
 	branches = "!sh -c \"git checkout $(git for-each-ref --sort='-authordate:iso8601' --format=' %(authordate:relative)%09%(refname:short)' refs/heads | pick | cut -f2)\""
+	clone-for-worktrees = "!sh git-clone-bare-for-worktrees"
 	delete-merged = "!git branch --merged | grep -v \"^\\s*master$\" | grep -v \"\\*\" | xargs -n 1 git branch -d"
 	graph = log --all -n 15 --graph --abbrev-commit --decorate --format=tformat:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an <%ce>%C(reset)'
 	staged = diff --staged
