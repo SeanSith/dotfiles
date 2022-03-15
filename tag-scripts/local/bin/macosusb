@@ -1,0 +1,13 @@
+#/bin/bash
+
+if [[ "$1" == '' || "$2" == '' ]]; then
+    echo "Usage: macosusb [OS nickname] [Volume]"
+    echo "  OS nickname (e.g. 'Monterey' or 'Big Sur')"
+    echo "  Volume should be a mounted USB volume on the system"
+else
+if [[ ! -d '/Users/Shared/Mist/Install %NAME%.app' ]]; then
+    sudo mist download $1 --application --package-name 'Install %NAME%.app'
+else
+    sudo "/Users/Shared/Mist/Install macOS $1.app/Contents/Resources/createinstallmedia" \
+    --volume "/Volumes/Install macOS $1"
+fi
