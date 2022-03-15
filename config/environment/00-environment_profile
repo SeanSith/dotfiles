@@ -1,0 +1,4 @@
+shell=$(echo $SHELL | awk -F/ {'print $NF'})
+
+# Load remaining environment helpers
+[ -d $HOME/.config/$shell ] && eval "$(cat $HOME/.config/$shell/*)"

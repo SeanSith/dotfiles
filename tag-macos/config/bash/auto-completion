@@ -1,0 +1,2 @@
+# Bash Autocompletion
+[ -f $(brew --prefix)/etc/profile.d/bash_completion.sh ] && source $(brew --prefix)/etc/profile.d/bash_completion.sh

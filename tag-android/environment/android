@@ -1,4 +1,3 @@
 # Android SDK
 [ $(which android > /dev/null 2>&1) ] && \
-  export ANDROID_HOME=/usr/local/opt/android-sdk
-  
+  export ANDROID_HOME=$(brew --prefix android-sdk)

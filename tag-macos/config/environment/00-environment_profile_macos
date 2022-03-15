@@ -1,0 +1,21 @@
+# Homebrew Setup
+if [ $(uname -p) == 'arm' ]; then
+  eval $(/opt/homebrew/bin/brew shellenv)
+else
+  eval $(/usr/local/bin/brew shellenv)
+fi
+
+if which brew > /dev/null; then
+  alias caskrepo='cd "$(brew --repository)"/Library/Taps/homebrew/homebrew-cask'
+  export PATH="$(brew --prefix)/sbin:$PATH"
+fi
+
+[ TERM_PROGRAM == "iTerm.app" ] && \
+  [ -e "$HOME/.iterm2_shell_integration.$shell" ] && \
+    source "$HOME/.iterm2_shell_integration.$shell"
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+alias flushdns='sudo killall -HUP mDNSResponder'
