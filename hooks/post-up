@@ -1,7 +1,9 @@
 #!/bin/bash
 
-for file in `ls $HOME/.hooks/*_post-up`
-do
-  echo Running post_up hook for `basename $file | cut -d'_' -f1`
-  $file
-done
+if [ -d ${HOME}/.hooks ]; then
+  for file in `ls $HOME/.hooks/*_post-up`
+  do
+    echo Running post_up hook for `basename $file | cut -d'_' -f1`
+    $file
+  done
+fi
