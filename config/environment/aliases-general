@@ -1,5 +1,3 @@
-alias ls='ls -G'
-alias ll='ls -lG'
 alias weather='curl -4 wttr.in'
 alias moon='curl wttr.in/Moon'
 alias dcr='docker compose run --rm'
