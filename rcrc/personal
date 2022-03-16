@@ -1,0 +1,9 @@
+#COPY_ALWAYS=""
+EXCLUDES="README.md LICENSE TODO.md rcrc"
+DOTFILES_DIRS="$HOME/.dotfiles $HOME/.dotfiles-local"
+#HOSTNAME=""
+
+TAGS="personal macos vim scripts ruby asdf"
+
+#SYMLINK_DIRS=""
+
