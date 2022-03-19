@@ -16,6 +16,4 @@ fi
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-
 alias flushdns='sudo killall -HUP mDNSResponder'

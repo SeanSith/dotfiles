@@ -2,3 +2,7 @@ shell=$(echo $SHELL | awk -F/ {'print $NF'})
 
 # Load remaining environment helpers
 [ -d $HOME/.config/$shell ] && eval "$(cat $HOME/.config/$shell/*)"
+
+if command -v bat > /dev/null; then
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
