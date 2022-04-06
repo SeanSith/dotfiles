@@ -6,3 +6,7 @@ Style/TrailingCommaInHashLiteral:
   Enabled: false
 Style/TrailingCommaInArrayLiteral:
   Enabled: false
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: '[]'
+
