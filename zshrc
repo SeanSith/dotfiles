@@ -69,9 +69,21 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
+# Example format:fe plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git asdf aws vi-mode)
+plugins=(
+         asdf
+         autojump
+         aws
+         docker
+         git
+         knife
+         knife_ssh
+         macos
+         npm
+         vi-mode
+         zsh-autosuggestions
+ )
 
 source $ZSH/oh-my-zsh.sh
 
