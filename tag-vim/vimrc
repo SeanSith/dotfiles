@@ -11,7 +11,6 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 \| endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf'
 Plug 'scrooloose/syntastic'     " Syntax checking
 Plug 'Valloric/MatchTagAlways'  " matching HTML tag highlighting
@@ -19,6 +18,7 @@ Plug 'unblevable/quick-scope'   " left-right movement
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes' | Plug 'edkolev/tmuxline.vim' | Plug 'bling/vim-bufferline'
+Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter' | Plug 'tpope/vim-fugitive'
 Plug 'editorconfig/editorconfig-vim'
 "Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
