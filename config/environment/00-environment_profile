@@ -1,4 +1,4 @@
-shell=$(echo $SHELL | awk -F/ {'print $NF'})
+shell=$(echo $0 | awk -F/ {'print $NF'} | sed -E -n 's/-?(.*)/\1/p')
 
 # Load remaining environment helpers
 [ -d $HOME/.config/$shell ] && eval "$(cat $HOME/.config/$shell/*)"
