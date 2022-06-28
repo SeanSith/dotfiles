@@ -1,3 +1,5 @@
+[user]
+	name = Sean Smith
 [push]
 	default = simple
 [merge]
@@ -26,3 +28,16 @@
 	prune = true
 [init]
 	defaultBranch = main
+
+[include]
+	path = credential-helper
+	path = user-email
+
+[includeIf "hasconfig:remote.*.url:https://github.com/**"]
+	path = github-user
+
+[includeIf "hasconfig:remote.*.url:ssh://github.com/**"]
+	path = github-user
+
+[includeIf "hasconfig:remote.*.url:https://gitlab.yum.com/**"]
+	path = yum-email
