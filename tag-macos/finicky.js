@@ -68,9 +68,9 @@ module.exports = {
       browser: "us.zoom.xos"
     },
     {
-      // Open Google Drive in Firefox if opened from Slack
+      // Open Google Drive in Google Chrome if opened from Slack
       match: ({ opener, url }) => opener.bundleId === "com.tinyspeck.slackmacgap" && url.host.includes("drive.google.com"),
-      browser: "Firefox"
+      browser: "Google Chrome"
     },
     {
       match: finicky.matchHostnames([
