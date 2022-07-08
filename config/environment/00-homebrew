@@ -1,0 +1,17 @@
+# Homebrew Setup
+case $(uname -s) in
+  'Linux' )
+    brew_bin="/home/linuxbrew/.linuxbrew/bin/brew"
+    ;;
+  'Darwin' )
+    if [[ $(uname -p) == 'arm' ]]; then
+      brew_bin="/opt/homebrew/bin/brew"
+    else
+      brew_bin="/usr/local/bin/brew"
+    fi
+    ;;
+esac
+if [[ -f ${brew_bin} ]]; then 
+  eval "$(${brew_bin} shellenv)"
+  alias caskrepo='cd "$(brew --repository)"/Library/Taps/homebrew/homebrew-cask'
+fi
