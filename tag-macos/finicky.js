@@ -47,7 +47,18 @@ module.exports = {
           name: "Firefox",
           args: ["--private-window", urlString]
       })
-    }, */
+    },
+*/
+    {
+      match: [
+        "kfcus.atlassian.net/*",
+        "gitlab.yum.com/*",
+      ],
+      browser: {
+      	name: "Google Chrome",
+        profile: "Profile 2"
+      }
+    },
     {
       // Open Apple Music links directly in Music.app
       match: [
@@ -69,15 +80,21 @@ module.exports = {
     },
     {
       // Open Google Drive in Google Chrome if opened from Slack
-      match: ({ opener, url }) => opener.bundleId === "com.tinyspeck.slackmacgap" && url.host.includes("drive.google.com"),
-      browser: "Google Chrome"
+      match: ({ opener, url }) => opener.bundleId === "com.tinyspeck.slackmacgap" && ( url.host.includes("drive.google.com") || url.host.includes("docs.google.com") ) ,
+      browser: {
+        name: "Google Chrome",
+        profile: "Default"
+      }
     },
     {
       match: finicky.matchHostnames([
           /console.aws.amazon.com$/,
           /missiondata\.(net|com)?/
       ]),
-      browser: "Google Chrome"
+      browser: {
+        name: "Google Chrome",
+        profile: "Default"
+      }
     },
     {
       match: ({ opener }) => [
