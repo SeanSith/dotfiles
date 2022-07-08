@@ -72,7 +72,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format:fe plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-         asdf
          autojump
          aws
          docker
