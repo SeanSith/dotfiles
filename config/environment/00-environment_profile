@@ -6,3 +6,5 @@ shell=$(echo $0 | awk -F/ {'print $NF'} | sed -E -n 's/-?(.*)/\1/p')
 if command -v bat > /dev/null; then
   export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
+
+export PATH="$HOME/.local/bin:$PATH"
