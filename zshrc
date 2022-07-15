@@ -8,8 +8,10 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="kolo"
+# ZSH_THEME="kolo"
+ZSH_THEME="agnoster"
 # ZSH_THEME="simple"
+# ZSH_THEME="sean"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -111,6 +113,12 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Agnoster customizations https://github.com/ohmyzsh/ohmyzsh/blob/master/themes/agnoster.zsh-theme
+prompt_context() {}
+prompt_dir() {
+  prompt_segment blue $CURRENT_FG '%c'
+}
 
 # Bootstrap my environment helpers
 [ -d $HOME/.config/environment ] && eval "$(cat $HOME/.config/environment/*)"
