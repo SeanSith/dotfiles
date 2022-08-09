@@ -1,87 +1,131 @@
-#!/bin/bash
+#!/usr/bin/env ruby
 
-function usage () {
-  cat <<USAGE 1>&2
+require 'bundler/inline'
+require 'getoptlong'
+require 'openssl'
 
-Usage: `basename $0` [-h] [list|password|status] [-ik]
-  list - List all instances
-  password [pemfile] - Provides the 'Administrator' password
-    -i instance-id
-    -k instance launch key
-  status - Shows instance status
-    -i instance -id
+gemfile do
+  source 'https://rubygems.org'
+  gem 'aws-sdk-ec2'
+  gem 'ox'
+end
 
-USAGE
-}
+class Instance
+  attr_reader :name, :project, :stages, :roles, :state, :id, :public_ip_address,
+    :private_ip_address, :key
 
-function parse_subcommand () {
-  shift
-  while getopts ":i:k:" opt; do
-    case $opt in
-      i)
-        ID=$OPTARG
-        ;;
-      k)
-        KEY=$OPTARG
-        ;;
-      \?)
-        echo "Invalid option: -$OPTARG" 1>&2
-        exit 1
-        ;;
-      :)
-        echo "Invalid argument: -$OPTARG requires an argument" 1>&2
-        exit 1
-        ;;
-    esac
-  done
-}
+  def initialize(instance)
+    parse_tags(instance.tags)
+    @state = instance.state.name
+    @id = instance.instance_id
+    @public_ip_address = instance.public_ip_address
+    @private_ip_address = instance.private_ip_address
+    @key = instance.key_name
+  end
 
-function instance_detail () {
-  jq '.Reservations[].Instances[] | 
-         { 
-           Name: .Tags[] | select(.Key == "Name")|.Value, 
-           InstanceId: .InstanceId, 
-           State: .State.Name, 
-           IpAddress: .PublicIpAddress,
-           KeyName: .KeyName,
-           Project: .Tags[] | select(.Key == "Project")|.Value,
-           Stages: .Tags[] | select(.Key == "Stages")|.Value,
-           Roles: .Tags[] | select(.Key == "Roles")|.Value,
-         }'
-}
+  def to_h
+    {
+      instance_id: @id,
+      name: @name,
+      state: @state,
+      public_ip_address: @public_ip_address,
+      private_ip_address: @private_ip_address,
+      project: @project,
+      stages: @stages,
+      roles: @roles,
+      launch_key: @key
+    }
+  end
 
-### Main
+  def to_json(*options)
+    JSON.pretty_generate(self.to_h)
+  end
 
-while getopts ":h" opt; do
-  case $opt in
-    h)
-      usage
-      exit 0
-      ;;    
-    \?)
-      usage
-      exit 1
-      ;;
-  esac
-done
-shift $((OPTIND -1))
+  private
+
+  def parse_tags(tags)
+    tags.each do |tag|
+      @name = tag.value if tag.key.match(/Name/i)
+      @project = tag.value if tag.key.match(/Project/i)
+      @stages = tag.value if tag.key.match(/Stages/i)
+      @roles = tag.value if tag.key.match(/Roles/i)
+    end
+  end
+end
+
+def usage
+ puts <<-USAGE
+#{$PROGRAM_NAME} [OPTION]
+
+-h, --help:
+   show help
+
+-l, --list
+   Obtain a list of EC2 instances from the current account.
+   Returns a single instance if -i is passed.
+
+-p, --password
+   Retrieve the Windows RDP password for an instance_id (requires -i and -k)
+
+-i, --instance_id [instance id]
+   Operates the above commands on a single EC2 instance as defined by 'instance id'
+
+-k, --key_file [path to launch key]
+   Used as part of --password to decrypt the Windows RDP password for an instance
+
+ USAGE
+end
+
+opts = GetoptLong.new(
+  [ '--help', '-h', GetoptLong::NO_ARGUMENT],
+  [ '--list', '-l', GetoptLong::NO_ARGUMENT],
+  [ '--password', '-p', GetoptLong::NO_ARGUMENT],
+  [ '--instance_id', '-i', GetoptLong::REQUIRED_ARGUMENT],
+  [ '--key_file', '-k', GetoptLong::REQUIRED_ARGUMENT],
+)
 
 
-case $1 in
-  list )
-    aws ec2 describe-instances | instance_detail
-    ;;
-  password )
-    parse_subcommand $@
-    if [[ $KEY == '' || $INSTANCE_ID == '' ]]; then
-      usage
-      exit 1
-    fi
-    aws ec2 get-password-data --instance-id $INSTANCE_ID --priv-launch-key $KEY | \
-       jq '.PasswordData | { Password: . }'
-    ;;
-  status)
-    parse_subcommand $@
-    aws ec2 describe-instances --instance-id $INSTANCE_ID | instance_detail
-    ;;
-esac
+operation = nil
+instance_id = nil
+keyfile = nil
+opts.each do |opt, arg|
+  case opt
+  when '--list', '-l'
+    operation = :list
+  when '--password', '-p'
+    operation = :password
+  when '--instance_id', '-i'
+    instance_id = arg
+  when '--key_file', '-k'
+    keyfile = arg
+  else
+    usage
+    exit 1
+  end
+end
+
+case operation
+when :password
+  if instance_id && keyfile
+    client = Aws::EC2::Resource.new
+    puts client.instance(instance_id).decrypt_windows_password(keyfile)
+  else
+    warn "You must provide an instance_id and key_file for this operation."
+    usage
+  end
+when :list
+  instances = []
+  client = Aws::EC2::Client.new
+  if instance_id
+    instances = Instance.new(client.describe_instances(
+      instance_ids: [instance_id]
+    ))
+  else
+    instances = client.describe_instances.reservations.flat_map do |reservation|
+      reservation.instances.map {|instance| Instance.new(instance) }
+    end
+  end
+  puts instances.to_json
+end
+
+
