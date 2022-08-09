@@ -84,7 +84,7 @@ plugins=(
          npm
          vi-mode
          zsh-autosuggestions
- )
+)
 
 source $ZSH/oh-my-zsh.sh
 
