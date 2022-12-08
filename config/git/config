@@ -42,3 +42,6 @@
 
 [includeIf "hasconfig:remote.*.url:https://gitlab.yum.com/**"]
 	path = yum-email
+
+[includeIf "hasconfig:remote.*.url:https://gitlab.com/**"]
+	path = gitlab-email
