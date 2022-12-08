@@ -1,4 +1,5 @@
 SAM_CLI_TELEMETRY=0
+export AWS_PAGER=""
 
 awsprofile() {
   export AWS_DEFAULT_PROFILE=$1
