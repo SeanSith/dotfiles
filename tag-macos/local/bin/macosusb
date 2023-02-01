@@ -1,15 +1,39 @@
 #/bin/bash
+usage() {
+    echo "Usage: macosusb [-fh] -o [OS nickname] -v [Volume]"
+    echo "  -o OS nickname (e.g. 'Monterey' or 'Big Sur')"
+    echo "  -v Volume should be a mounted USB volume on the system"
+    echo "  -f Force downloading of the OS (because updates)"
+    echo "  -h Help/usage"
+    exit
+}
 
-if [[ "$1" == '' || "$2" == '' ]]; then
-    echo "Usage: macosusb [OS nickname] [Volume]"
-    echo "  OS nickname (e.g. 'Monterey' or 'Big Sur')"
-    echo "  Volume should be a mounted USB volume on the system"
+while getopts "hfo:v:" arg; do
+  case $arg in
+    h)
+      usage
+      ;;
+    f)
+      force=0
+      ;;
+    o)
+      os=${OPTARG}
+      ;;
+    v)
+      volume=${OPTARG}
+      ;;
+  esac
+done
+
+
+if [[ "${os}" == '' || "${volume}" == '' ]]; then
+    usage
 else
-    if [[ ! -d "/Users/Shared/Mist/Install macOS $1.app" ]]; then
-        sudo mist download $1 --application --package-name 'Install %NAME%.app'
-    else
-        sudo "/Users/Shared/Mist/Install macOS $1.app/Contents/Resources/createinstallmedia" \
-        --volume "/Volumes/Install macOS $1"
+    if [[ $force || ! -d "/Users/Shared/Mist/Install macOS ${os}.app" ]]; then
+        sudo mist download installer $os application --application-name 'Install %NAME%.app'
     fi
+
+    sudo "/Users/Shared/Mist/Install macOS ${os}.app/Contents/Resources/createinstallmedia" \
+        --volume "${volume}"
 fi
 
