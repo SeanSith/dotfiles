@@ -8,6 +8,8 @@ usage() {
     exit
 }
 
+MIST_DIR="/Users/Shared/Mist"
+
 while getopts "hfo:v:" arg; do
   case $arg in
     h)
@@ -25,15 +27,22 @@ while getopts "hfo:v:" arg; do
   esac
 done
 
+mist_app_name="${MIST_DIR}/Install macOS ${os}.app"
 
 if [[ "${os}" == '' || "${volume}" == '' ]]; then
     usage
 else
-    if [[ $force || ! -d "/Users/Shared/Mist/Install macOS ${os}.app" ]]; then
-        sudo mist download installer $os application --application-name 'Install %NAME%.app'
+    if [[ ${force} || ! -d "${mist_app_name}" ]]; then
+        sudo mist download installer \
+            --cache-downloads \
+            --output-directory ${MIST_DIR} \
+            --application-name 'Install %NAME%.app' \
+            $os \
+            application
     fi
 
-    sudo "/Users/Shared/Mist/Install macOS ${os}.app/Contents/Resources/createinstallmedia" \
+    sudo "${mist_app_name}/Contents/Resources/createinstallmedia" \
+        --nointeraction \
         --volume "${volume}"
 fi
 
