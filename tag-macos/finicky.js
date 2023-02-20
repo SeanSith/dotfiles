@@ -23,14 +23,6 @@ module.exports = {
       }
     },
     {
-      match: ({ url }) => url.host === "www.amazon.com",
-      url: {
-        host: "smile.amazon.com",
-        protocol: 'https',
-        search: ''
-      }
-    },
-    {
       match: ({ url }) => url.host === "apne.ws",
       url: {
         protocol: 'http',
@@ -105,7 +97,6 @@ module.exports = {
     },
     {
       match: finicky.matchHostnames([
-          "smile.amazon.com",
           /facebook\.com/,
           /linkedin\.com/,
           /reddit\.com/,
