@@ -42,16 +42,6 @@ module.exports = {
     },
 */
     {
-      match: [
-        "kfcus.atlassian.net/*",
-        "gitlab.yum.com/*",
-      ],
-      browser: {
-      	name: "Google Chrome",
-        profile: "Profile 2"
-      }
-    },
-    {
       // Open Apple Music links directly in Music.app
       match: [
           "music.apple.com*",
