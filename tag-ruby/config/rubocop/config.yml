@@ -14,4 +14,6 @@ Style/PercentLiteralDelimiters:
     '%r': '{}'
     '%w': '[]'
     '%W': '[]'
-
+AllCops:
+  Exclude:
+    - 'node_modules/**/*'
