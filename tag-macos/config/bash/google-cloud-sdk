@@ -1,0 +1,2 @@
+[ -f $(brew --prefix)/share/google-cloud-sdk/path.bash.inc ] && \
+  source "$(brew --prefix)/share/google-cloud-sdk/path.bash.inc"

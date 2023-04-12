@@ -25,6 +25,8 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
+# Additional shell-specific helpers
+[ -d $XDG_CONFIG_HOME/zsh ] && eval "$(cat $XDG_CONFIG_HOME/zsh/*)"
+
 # Avoid escaping or quoting brackets on the command line
 unsetopt nomatch
-

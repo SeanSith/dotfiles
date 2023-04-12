@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # Bootstrap my environment helpers
-[ -d $HOME/.config/environment ] && eval "$(cat $HOME/.config/environment/*)"
+[ -d $XDG_CONFIG_HOME/environment ] && eval "$(cat $XDG_CONFIG_HOME/environment/*)"
