@@ -1,5 +1,3 @@
 [[ "$TERM_PROGRAM" == "iTerm.app" ]] && \
   [ -e "$HOME/.iterm2_shell_integration.$shell" ] && \
     source "$HOME/.iterm2_shell_integration.$shell"
-
-alias flushdns='sudo killall -HUP mDNSResponder'
