@@ -1,0 +1,4 @@
+[ -f $(brew --prefix)/share/google-cloud-sdk/path.$shell.inc ] && \
+  source "$(brew --prefix)/share/google-cloud-sdk/path.$shell.inc"
+[ -f $(brew --prefix)/share/google-cloud-sdk/completion.$shell.inc ] && \
+  source "$(brew --prefix)/share/google-cloud-sdk/completion.$shell.inc"
