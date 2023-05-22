@@ -8,3 +8,5 @@ if command -v bat > /dev/null; then
 fi
 
 export PATH="$HOME/.local/bin:$PATH"
+
+export EDITOR=$(which vim)
