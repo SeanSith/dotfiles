@@ -1,10 +1,18 @@
-#!/usr/bin/env ruby
-require 'gitlab'
+#!/usr/bin/env bash
 
-ARGV.each do |user|
-  Gitlab.sudo = user
+CREDENTIAL=`op item get 'GitLab Personal Access Token' --fields credential`
+ENDPOINT=`op item get 'GitLab Personal Access Token' --fields endpoint`
 
-  Gitlab.ssh_keys.each do |key|
-    puts key.key
-  end
-end
+user_id=$(\
+  curl -s -H "PRIVATE-TOKEN: ${CREDENTIAL}" \
+    "${ENDPOINT}/users?username=${1}" \
+    | jq .[].id
+)
+
+if [[ $(echo $user_id | grep '\d\+') ]]; then
+  curl -s -H "PRIVATE-TOKEN: ${CREDENTIAL}" \
+    "${ENDPOINT}/users/${user_id}/keys" \
+    | jq .[].key
+else
+  echo "User not found"
+fi
