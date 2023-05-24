@@ -80,7 +80,7 @@ module.exports = {
     },
     {
       match: ({ opener }) => [
-          "com.tapbots.Tweetbot3Mac",
+          "com.tapbots.Ivory",
           "com.apple.MobileSMS"
       ].includes(opener.bundleId),
       browser: "Firefox"
