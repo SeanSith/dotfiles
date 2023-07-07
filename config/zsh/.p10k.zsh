@@ -106,6 +106,7 @@
     # battery               # internal battery
     # wifi                  # wifi speed
     # example               # example user-defined segment (see prompt_example function below)
+    arch
   )
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
@@ -1670,6 +1671,12 @@
   # Type `p10k help segment` for documentation and a more sophisticated example.
   function prompt_example() {
     p10k segment -b 1 -f 3 -i '⭐' -t 'hello, %n'
+  }
+
+  function prompt_arch() {
+    if [[ $(arch) != 'arm64' ]]; then
+      p10k segment -b 4 -f 2 -t "$(arch)"
+    fi 
   }
 
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
