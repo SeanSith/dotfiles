@@ -2,6 +2,7 @@ alias weather='curl -4 wttr.in'
 alias moon='curl wttr.in/Moon'
 alias dcr='docker compose run --rm'
 alias dce='docker compose exec -it'
+alias x86shell='arch -x86_64 /bin/zsh -l'
 
 check-tls-expiration() {
   port=443
