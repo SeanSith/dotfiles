@@ -3,7 +3,7 @@ EXCLUDES="README.md LICENSE TODO.md rcrc"
 DOTFILES_DIRS="$HOME/.dotfiles $HOME/.dotfiles-local"
 #HOSTNAME=""
 
-TAGS="work ruby asdf go php"
+TAGS="ruby asdf go php"
 
 #SYMLINK_DIRS=""
 
