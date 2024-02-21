@@ -1,9 +1,4 @@
 [user]
-  email = SeanSith@users.noreply.github.com
+  email = 354350-SeanSith@users.noreply.gitlab.com
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINtdaifxopAx5XDH3+XWTFZ1GhSH8tbsrnziOQaZxdVa
 
-[gpg]
-  format = ssh
-
-[commit]
-  gpgsign = true

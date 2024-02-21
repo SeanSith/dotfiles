@@ -1,0 +1,12 @@
+[user]
+  email = sean@seansith.com
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINtdaifxopAx5XDH3+XWTFZ1GhSH8tbsrnziOQaZxdVa
+
+[includeIf "hasconfig:remote.*.url:https://github.com/**"]
+	path = user-github
+
+[includeIf "hasconfig:remote.*.url:ssh://github.com/**"]
+	path = user-github
+
+[includeIf "hasconfig:remote.*.url:https://gitlab.com/**"]
+	path = user-gitlab

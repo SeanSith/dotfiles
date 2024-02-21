@@ -29,16 +29,11 @@
 	prune = true
 [init]
 	defaultBranch = main
+[gpg]
+  format = ssh
+[commit]
+  gpgsign = true
 
 [include]
 	path = credential-helper
-	path = user-email
-
-[includeIf "hasconfig:remote.*.url:https://github.com/**"]
-	path = github-user
-
-[includeIf "hasconfig:remote.*.url:ssh://github.com/**"]
-	path = github-user
-
-[includeIf "hasconfig:remote.*.url:https://gitlab.com/**"]
-	path = gitlab-user
+	path = identity-config
