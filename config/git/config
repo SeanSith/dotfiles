@@ -41,4 +41,4 @@
 	path = github-user
 
 [includeIf "hasconfig:remote.*.url:https://gitlab.com/**"]
-	path = gitlab-email
+	path = gitlab-user

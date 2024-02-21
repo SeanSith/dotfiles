@@ -1,2 +1,10 @@
 [user]
-	email = sean@seansith.com
+  email = sean@seansith.com
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINtdaifxopAx5XDH3+XWTFZ1GhSH8tbsrnziOQaZxdVa
+
+[gpg]
+  format = ssh
+
+[commit]
+  gpgsign = true
+
