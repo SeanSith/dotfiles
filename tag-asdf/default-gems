@@ -4,4 +4,4 @@ foreman
 htmlbeautifier
 pry
 rubocop
-solargraph
+ruby-lsp
