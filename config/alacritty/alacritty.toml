@@ -5,6 +5,10 @@ normal = { family = "MonaspiceNe Nerd Font Mono", style = "Regular" }
 size = 14
 offset = { x = 1, y = 0 }
 
+[colors.normal]
+blue = "#0e2cf4"
+yellow = "#c6c43d"
+
 [window]
 blur = true
 dynamic_padding = true
