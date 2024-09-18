@@ -1,0 +1,14 @@
+live_config_reload = true
+
+[font]
+normal = { family = "MonaspiceNe Nerd Font Mono", style = "Regular" }
+size = 14
+offset = { x = 1, y = 0 }
+
+[window]
+blur = true
+dynamic_padding = true
+opacity = 0.8
+
+[selection]
+save_to_clipboard = true
