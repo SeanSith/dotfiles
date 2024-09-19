@@ -1,13 +1,13 @@
 live_config_reload = true
 
+import = [
+  "~/.config/alacritty/google.toml"
+]
+
 [font]
 normal = { family = "MonaspiceNe Nerd Font Mono", style = "Regular" }
 size = 14
 offset = { x = 1, y = 0 }
-
-[colors.normal]
-blue = "#0e2cf4"
-yellow = "#c6c43d"
 
 [window]
 blur = true
