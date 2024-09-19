@@ -16,3 +16,11 @@ opacity = 0.8
 
 [selection]
 save_to_clipboard = true
+
+[keyboard]
+bindings = [
+  { key = "ArrowLeft", mods = "Command", action = "SelectPreviousTab" },
+  { key = "ArrowRight", mods = "Command", action = "SelectNextTab" },
+  { key = "[", mods = "Command", action = "SelectPreviousTab" },
+  { key = "]", mods = "Command", action = "SelectNextTab" },
+]
