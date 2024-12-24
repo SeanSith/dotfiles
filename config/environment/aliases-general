@@ -16,6 +16,6 @@ upload-cookbook() {
   knife cookbook upload --force $(basename `pwd`)
 }
 
-gr() {
+gitroot() {
   cd "$(git rev-parse --show-toplevel)" || return
 }
