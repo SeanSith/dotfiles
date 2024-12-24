@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 if [ -d ${HOME}/.hooks ]; then
   for file in `ls $HOME/.hooks/*_post-up`
@@ -8,11 +8,19 @@ if [ -d ${HOME}/.hooks ]; then
   done
 fi
 
-source ${HOME}/.zshenv
-if [ ! -d ${XDG_CONFIG_HOME}/zsh/.zprezto ]; then
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/.zprezto"
-  setopt EXTENDED_GLOB
-  for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md; do
-    ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-  done
+if [ ! -d ${HOME}/.oh-my-zsh ]; then
+  echo "Installing oh-my-zsh"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
+
+if [ ! -d ${ZSH_CUSTOM}/themes/powerlevel10k ]; then
+  echo "Installing powerlevel10k"
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+fi
+
+plugins="zsh-autosuggestions zsh-syntax-highlighting zsh-completions zsh-history-substring-search"
+for plugin in `echo $plugins`;
+do
+  [[ ! -d ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/${plugin} ]] && \
+    git clone https://github.com/zsh-users/${plugin} ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/${plugin}
+done
