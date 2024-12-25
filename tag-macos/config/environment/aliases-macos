@@ -1,2 +1,2 @@
 alias flushdns='sudo killall -HUP mDNSResponder'
-alias rosetta='arch -x86_64 ${SHELL} -l'
+alias x86shell='arch -x86_64 ${SHELL} -l'
