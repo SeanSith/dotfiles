@@ -1,12 +1,9 @@
+export ASDF_DATA_DIR=${HOME}/.asdf
 if command -v brew > /dev/null; then
   if [[ $(uname) == 'Darwin' ]]; then
     [[ $(sysctl -n machdep.cpu.brand_string) =~ ^Apple ]] && \
       [ $(sysctl -n sysctl.proc_translated) -eq 1 ] && \
         export ASDF_DATA_DIR=${HOME}/.asdf-rosetta2
   fi
-  source $(brew --prefix asdf)/libexec/asdf.sh
-  [[ $shell == 'bash' ]] && source $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
-else
-  source $HOME/.asdf/asdf.sh
-  [[ $shell == 'bash' ]] && source $HOME/.asdf/completions/asdf.bash
 fi
+export PATH=${ASDF_DATA_DIR}/shims:${PATH}
