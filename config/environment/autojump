@@ -1,5 +1,0 @@
-if command -v autojump> /dev/null; then
-  if command -v brew > /dev/null; then
-    [ -f $(brew --prefix autojump)/etc/profile.d/autojump.sh ] && . $(brew --prefix autojump)/etc/profile.d/autojump.sh
-  fi
-fi
