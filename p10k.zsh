@@ -47,8 +47,8 @@
     # command_execution_time # duration of the last command
     background_jobs         # presence of background jobs
     # direnv                # direnv status (https://direnv.net/)
-    # asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
-    mise                    # mise version manager (https://github.com/2KAbhishek/dots2k/blob/main/config/zsh/prompt/p10k.mise.zsh)
+    asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
+    # mise                    # mise version manager (https://github.com/2KAbhishek/dots2k/blob/main/config/zsh/prompt/p10k.mise.zsh)
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     anaconda                # conda environment (https://conda.io/)
     # pyenv                 # python environment (https://github.com/pyenv/pyenv)
