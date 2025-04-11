@@ -1,5 +1,4 @@
 # Powerlevel10k prompt segments for mise
-# https://github.com/2KAbhishek/dots2k/blob/main/config/zsh/prompt/p10k.mise.zsh
 # [Feature request: add segment for mise](https://github.com/romkatv/powerlevel10k/issues/2212)
 # Usage in ~/.zshrc:
 #   [[ -f ~/.config/shell/p10k.mise.zsh ]] && source ~/.config/shell/p10k.mise.zsh
@@ -33,7 +32,7 @@
   typeset -g POWERLEVEL9K_MISE_PHP_BACKGROUND=93
   typeset -g POWERLEVEL9K_MISE_POSTGRES_BACKGROUND=33
   typeset -g POWERLEVEL9K_MISE_PYTHON_BACKGROUND=33
-  typeset -g POWERLEVEL9K_MISE_RUBY_BACKGROUND=196
+  typeset -g POWERLEVEL9K_MISE_RUBY_BACKGROUND=1
   typeset -g POWERLEVEL9K_MISE_RUST_BACKGROUND=208
 
   # Substitute the default asdf prompt element
