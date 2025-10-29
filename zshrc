@@ -14,6 +14,7 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "chivalryq/zsh-autojump"
 plug "romkatv/powerlevel10k"
 plug "zap-zsh/fzf"
+plug "wintermi/zsh-mise"
 
 # My custom stuff
 for name in $(ls $HOME/.config/environment)
