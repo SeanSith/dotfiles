@@ -10,7 +10,8 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "chivalryq/zsh-autojump"
 plug "hlissner/zsh-autopair"
 plug "wintermi/zsh-mise"
-plug "wintermi/zsh-starship"
+
+eval "$(starship init zsh)"
 
 # My custom stuff
 plug "$HOME/.config/environment/*"
