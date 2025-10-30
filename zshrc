@@ -28,7 +28,3 @@ for name in `/bin/ls $HOME/.config/zsh`
 do
   plug "$HOME/.config/zsh/$name"
 done
-
-# Load and initialise completion system
-autoload -Uz compinit
-compinit -d "${XDG_DATA_HOME:-$HOME}/.local/share/zsh/.zcompdump"
