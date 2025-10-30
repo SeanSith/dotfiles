@@ -5,8 +5,5 @@
 [includeIf "hasconfig:remote.*.url:https://github.com/**"]
 	path = user-github
 
-[includeIf "hasconfig:remote.*.url:ssh://github.com/**"]
-	path = user-github
-
 [includeIf "hasconfig:remote.*.url:https://gitlab.com/**"]
 	path = user-gitlab
