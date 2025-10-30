@@ -4,6 +4,7 @@ plug "wintermi/zsh-brew"
 plug "zap-zsh/completions"
 plug "zap-zsh/supercharge"
 plug "zap-zsh/exa"  # Must be installed after zap-zsh/supercharge
+plug "zap-zsh/fzf"
 plug "zap-zsh/vim"
 # Disable zap-zsh/vim change of cursor style
   zle -D zle-keymap-select
@@ -13,6 +14,7 @@ plug "zap-zsh/vim"
 
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
+plug "Aloxaf/fzf-tab"
 plug "chivalryq/zsh-autojump"
 plug "hlissner/zsh-autopair"
 plug "wintermi/zsh-mise"
