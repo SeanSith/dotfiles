@@ -5,6 +5,12 @@ plug "zap-zsh/completions"
 plug "zap-zsh/supercharge"
 plug "zap-zsh/exa"  # Must be installed after zap-zsh/supercharge
 plug "zap-zsh/vim"
+# Disable zap-zsh/vim change of cursor style
+  zle -D zle-keymap-select
+  # zle -D zle-line-init
+  echo -ne '\e[1 q'
+  preexec() { echo -ne '\e[1 q' ;}
+
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "chivalryq/zsh-autojump"
