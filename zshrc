@@ -30,3 +30,5 @@ for name in `/bin/ls $HOME/.config/zsh`
 do
   plug "$HOME/.config/zsh/$name"
 done
+
+unset LC_ALL
