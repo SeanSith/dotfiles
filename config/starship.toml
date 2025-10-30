@@ -117,6 +117,9 @@ format = '[ $symbol $branch ]($style)'
 [git_status]
 style = 'fg:text_three bg:bar_three'
 stashed = '*'
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
 format = '[$all_status$ahead_behind ]($style)'
 
 [c]
