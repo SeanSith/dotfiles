@@ -23,4 +23,5 @@ bindings = [
   { key = "ArrowRight", mods = "Command", action = "SelectNextTab" },
   { key = "[", mods = "Command", action = "SelectPreviousTab" },
   { key = "]", mods = "Command", action = "SelectNextTab" },
+  { key = "Back", mods = "Command", chars = "\u0015" },
 ]
