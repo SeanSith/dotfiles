@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CREDENTIAL=`op item get 'GitLab Personal Access Token' --fields credential`
+CREDENTIAL=`op item get 'GitLab Personal Access Token' --fields credential --reveal`
 ENDPOINT=`op item get 'GitLab Personal Access Token' --fields endpoint`
 
 user_id=$(\
