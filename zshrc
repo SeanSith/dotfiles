@@ -20,7 +20,10 @@ plug "wintermi/zsh-mise"
 eval "$(starship init zsh)"
 
 # My custom stuff
-plug "$HOME/.config/environment/*"
+for name in `/bin/ls $HOME/.config/environment`
+do
+  plug "$HOME/.config/environment/$name"
+done
 
 # Load and initialise completion system
 autoload -Uz compinit
