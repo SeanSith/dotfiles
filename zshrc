@@ -24,6 +24,10 @@ for name in `/bin/ls $HOME/.config/environment`
 do
   plug "$HOME/.config/environment/$name"
 done
+for name in `/bin/ls $HOME/.config/zsh`
+do
+  plug "$HOME/.config/zsh/$name"
+done
 
 # Load and initialise completion system
 autoload -Uz compinit
