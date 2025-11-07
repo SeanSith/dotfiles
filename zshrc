@@ -32,4 +32,10 @@ do
   plug "$name"
 done
 
+# Raycast is contaminating my shell
+if [[ -n "$NODE_ENV" ]]; then
+  unset NODE_ENV
+  unset NODE_PATH
+fi
+
 unset LC_ALL
