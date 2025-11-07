@@ -26,9 +26,10 @@ for name in `/bin/ls $HOME/.config/environment`
 do
   plug "$HOME/.config/environment/$name"
 done
-for name in `/bin/ls $HOME/.config/zsh`
+
+for name in `find ~/.config/zsh -maxdepth 1 -type l`
 do
-  plug "$HOME/.config/zsh/$name"
+  plug "$name"
 done
 
 unset LC_ALL
