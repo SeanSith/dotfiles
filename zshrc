@@ -3,7 +3,6 @@
 plug "wintermi/zsh-brew"
 plug "zap-zsh/completions"
 plug "zap-zsh/supercharge"
-plug "zap-zsh/exa"  # Must be installed after zap-zsh/supercharge
 plug "zap-zsh/fzf"
 plug "zap-zsh/vim"
 # Disable zap-zsh/vim change of cursor style
